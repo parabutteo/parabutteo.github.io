@@ -8,7 +8,19 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Текст писать тут
+          Привет!
+        </p>
+        <p>
+          Меня зовут Николай, я разработчик интерфейсов в компании СберКорус.
+        </p>
+        <p>
+          Пишу на TypeScript, пользуюсь React.
+        </p>
+        <p>
+          Знаком с JS, поверхностно знаю Angular. Есть опыт настройки Webpack и работы c Sass.
+        </p>
+        <p>
+          Хочу углубить познания в ReactJS для написания более осмысленного и функционального кода.
         </p>
       </header>
     </div>
