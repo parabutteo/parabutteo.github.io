@@ -1,7 +1,14 @@
 import React from 'react';
+import { Header } from '../Header/Header';
+import './layout.scss';
 
 interface ILayout {
   children: React.ReactNode | React.ReactNode[] | string;
 }
 
-export const Layout: React.FC<ILayout> = ({ children }: ILayout) => <main>{children}</main>;
+export const Layout: React.FC<ILayout> = ({ children }: ILayout) => (
+  <>
+    <Header />
+    <main>{children}</main>
+  </>
+);

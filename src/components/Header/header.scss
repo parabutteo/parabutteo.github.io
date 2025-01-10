@@ -1,6 +1,9 @@
-@import '../../app/common.scss';
+@import '../../app/styles/variables.scss';
 
 .header {
+  position: fixed;
+  box-sizing: border-box;
+  width: 100%;
   background-color: $header_bg;
   display: flex;
   justify-content: space-between;
@@ -31,8 +34,4 @@
       }
     }
   }
-}
-
-.logo {
-  color: white;
 }

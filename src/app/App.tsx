@@ -1,14 +1,9 @@
 import React from 'react';
-import './App.css';
-import { Header, Layout } from 'src/components';
+import './styles/common.scss';
+import { Layout } from 'src/components';
 
 function App() {
-  return (
-    <Layout>
-      <Header />
-      das
-    </Layout>
-  );
+  return <Layout>Content</Layout>;
 }
 
 export default App;
