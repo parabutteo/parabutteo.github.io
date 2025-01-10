@@ -1,9 +1,14 @@
 import React from 'react';
 import './App.css';
-import { Layout } from 'src/components';
+import { Header, Layout } from 'src/components';
 
 function App() {
-  return <Layout>das</Layout>;
+  return (
+    <Layout>
+      <Header />
+      das
+    </Layout>
+  );
 }
 
 export default App;

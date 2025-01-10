@@ -1,0 +1,24 @@
+.logo {
+  transition: .2s;
+  position: relative;
+  font-size: 36px;
+  font-weight: 900;
+  text-decoration: none;
+  
+  &:after {
+    bottom: -8px;
+    left: 0;
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 0px;
+    background-color: #fff;
+    transition: .2s;
+  }
+
+  &:hover {
+    &:after {
+      height: 6px;
+    }
+  }
+}
