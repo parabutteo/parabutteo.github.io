@@ -1,0 +1,49 @@
+@import '../../app/styles/variables.scss';
+
+.modal {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($dark, 0.95);
+  }
+
+  &-content {
+    width: 800px;
+    background-color: $white;
+    position: relative;
+    padding: 24px 24px 32px;
+    border-radius: 8px;
+
+    h2 {
+      margin-block-start: 0;
+    }
+  }
+
+  &-close-btn {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.1s;
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    opacity: .6;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    i {
+      color: $dark;
+      font-size: 32px;
+    }
+  }
+}

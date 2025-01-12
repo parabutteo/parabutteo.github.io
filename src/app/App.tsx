@@ -1,9 +1,16 @@
 import React from 'react';
 import './styles/common.scss';
-import { Layout } from 'src/components';
+import { Layout, Modal } from 'src/components';
 
 function App() {
-  return <Layout>Content</Layout>;
+  return (
+    <Layout>
+      Content
+      <Modal isOpen={false} title="Заголовок">
+        Контент модального окна
+      </Modal>
+    </Layout>
+  );
 }
 
 export default App;
