@@ -1,12 +1,14 @@
 import React from 'react';
 import './styles/common.scss';
-import { Layout, Modal } from 'src/components';
+import { Button, Layout, Modal } from 'src/components';
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+
   return (
     <Layout>
-      Content
-      <Modal isOpen={false} title="Заголовок">
+      <Button onClick={() => setIsModalOpen(true)}>Открыть модальное окно</Button>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Заголовок">
         Контент модального окна
       </Modal>
     </Layout>
