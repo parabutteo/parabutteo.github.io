@@ -7,7 +7,9 @@ function App() {
 
   return (
     <Layout>
-      <Button onClick={() => setIsModalOpen(true)}>Открыть модальное окно</Button>
+      <Button className="primary" onClick={() => setIsModalOpen(true)}>
+        Открыть модальное окно
+      </Button>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Заголовок">
         Контент модального окна
       </Modal>

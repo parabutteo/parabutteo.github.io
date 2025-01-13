@@ -5,8 +5,4 @@ interface IBtn extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode | React.ReactNode[] | string;
 }
 
-export const Button: React.FC<IBtn> = ({ children, ...buttonAttrs }) => (
-  <button className="button primary" {...buttonAttrs}>
-    {children}
-  </button>
-);
+export const Button: React.FC<IBtn> = ({ children, ...buttonAttrs }) => <button {...buttonAttrs}>{children}</button>;
