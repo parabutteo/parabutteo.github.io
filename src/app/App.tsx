@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/common.scss';
-import { Button, FullCard, Layout, Modal } from 'src/components';
+import { BasketItem, Button, FullCard, Layout, Modal } from 'src/components';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
@@ -13,7 +13,7 @@ function App() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Заголовок">
         Контент модального окна
       </Modal>
-      <FullCard
+      <BasketItem
         price={100}
         details="dsadasdas  das dasasdas  das das d"
         title="dasds"

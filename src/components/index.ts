@@ -6,3 +6,4 @@ export { Button } from './Button/Button';
 export { AddToBasket } from './Button/AddToBasket';
 export { FullCard } from './Card/FullCard';
 export { ShortCard } from './Card/ShortCard';
+export { BasketItem } from './Card/BasketItem';

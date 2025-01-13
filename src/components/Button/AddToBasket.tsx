@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from './Button';
+import clsx from 'clsx';
 
 interface IAddToBasket {
   counter: number;
@@ -9,7 +10,7 @@ interface IAddToBasket {
 export const AddToBasket: React.FC<IAddToBasket> = ({ counter, isDisabled }) => {
   if (counter > 0) {
     return (
-      <div className="counter flex-row align-items-center">
+      <div className={clsx('counter', 'flex-row', 'align-items-center', isDisabled && 'disabled')}>
         <Button>
           <i className="fa fa-minus" />
         </Button>

@@ -1,5 +1,14 @@
 @import '../../app/styles/variables.scss';
 
+@mixin disabled-element {
+  opacity: .2;
+  cursor: not-allowed;
+
+  * {
+    cursor: not-allowed;
+  }
+}
+
 button {
   border-radius: 4px;
 }
@@ -15,8 +24,7 @@ button:not(.icon-btn) {
   cursor: pointer;
 
   &:disabled {
-    opacity: .2;
-    cursor: not-allowed;
+    @include disabled-element();
   }
 
   &.primary {
@@ -40,8 +48,13 @@ button:not(.icon-btn) {
 }
 
 .counter {
+
   button {
     z-index: 1;
+  }
+
+  &.disabled {
+    @include disabled-element();
   }
 
   input {

@@ -1,6 +1,7 @@
 @import '../../app/styles/variables.scss';
 
 .card {
+  position: relative;
   overflow: hidden;
   border-radius: 4px;
 
@@ -11,6 +12,37 @@
     img {
       height: 350px;
       object-fit: cover;
+    }
+  }
+
+  &.basket-card {
+    border: 1px solid rgba($coral, 0.1);
+
+    img {
+      width: 100px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .delete-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      cursor: pointer;
+      transition: 0.1s;
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      opacity: .6;
+  
+      &:hover {
+        opacity: 1;
+      }
+  
+      i {
+        color: $dark;
+        font-size: 16px;
+      }
     }
   }
 
