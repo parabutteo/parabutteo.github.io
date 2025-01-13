@@ -1,18 +1,61 @@
-.margin {
+p, h1, h2, h3 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 
-  &-left {
+.margin {
   
+  &-left {
+    
     &-12 {
       margin-left: 12px;
     }
   }
+
+  &-top {
+    
+    &-12 {
+      margin-top: 12px;
+    }
+  }
+
+  &-bottom {
+    
+    &-8 {
+      margin-bottom: 8px;
+    }
+
+    &-12 {
+      margin-bottom: 12px;
+    }
+  }
 }
 
-.flex-row { 
-  display: flex;
-  flex-direction: row;
+.padding {
+  &-12 {
+    padding: 12px;
+  }
+}
+
+.flex{
+  &-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-column {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .align-items-center {
-   align-items: center;
+  align-items: center;
+}
+
+.txt {
+  
+  &-bold {
+    font-weight: 600;
+  }
 }

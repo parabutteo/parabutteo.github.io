@@ -1,6 +1,10 @@
 @import '../../app/styles/variables.scss';
 
 button {
+  border-radius: 4px;
+}
+
+button:not(.icon-btn) {
   display: block;
   border: 2px solid $pink;
   padding: 12px 20px;
@@ -9,7 +13,11 @@ button {
   color: $pink;
   transition: .2s;
   cursor: pointer;
-  border-radius: 4px;
+
+  &:disabled {
+    opacity: .2;
+    cursor: not-allowed;
+  }
 
   &.primary {
     background-color: $dark;
@@ -26,7 +34,7 @@ button {
     color: $white;
   }
 
-  &:active {
+  &:not(:disabled):active {
     opacity: .8;
   }
 }

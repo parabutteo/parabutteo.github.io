@@ -20,7 +20,7 @@ export const Modal: React.FC<IModal> = ({ onClose, isOpen, children, title }) =>
   return (
     <div className="modal-wrapper" onClick={handleOverlayClick}>
       <div className="modal-content">
-        <button className="modal-close-btn" onClick={onClose}>
+        <button className="icon-btn modal-close-btn" onClick={onClose}>
           <i className="fa fa-close" />
         </button>
         <div className="modal-body">

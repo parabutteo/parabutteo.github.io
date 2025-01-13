@@ -2,11 +2,11 @@ import React from 'react';
 import { Button } from './Button';
 
 interface IAddToBasket {
-  children: React.ReactNode | React.ReactNode[] | string;
   counter: number;
+  isDisabled?: boolean;
 }
 
-export const AddToBasket: React.FC<IAddToBasket> = ({ counter, children }) => {
+export const AddToBasket: React.FC<IAddToBasket> = ({ counter, isDisabled }) => {
   if (counter > 0) {
     return (
       <div className="counter flex-row align-items-center">
@@ -22,8 +22,8 @@ export const AddToBasket: React.FC<IAddToBasket> = ({ counter, children }) => {
   }
 
   return (
-    <Button className="primary">
-      {children}
+    <Button className="primary" disabled={isDisabled}>
+      Добавить в корзину
       <i className="margin-left-12 fa fa-shopping-cart" />
     </Button>
   );
