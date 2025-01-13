@@ -2,15 +2,36 @@
 
 .card {
   overflow: hidden;
+  border-radius: 4px;
 
   &.short-card {
     border: 1px solid rgba($coral, 0.1);
-    border-radius: 4px;
     max-width: 25%;
 
     img {
       height: 350px;
       object-fit: cover;
+    }
+  }
+
+  &.full-card {
+    width: 1000px;
+    display: flex;
+
+    .galery {
+      display: flex;
+      
+      .current-img img {
+        width: 400px;
+        height: 560px;
+        object-fit: cover;
+      }
+
+      .galery-img {
+        gap: 12px;
+        margin-left: 12px;
+        width: 100px;
+      }
     }
   }
 }
