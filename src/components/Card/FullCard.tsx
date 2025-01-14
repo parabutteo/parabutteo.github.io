@@ -3,22 +3,28 @@ import { AddToBasket } from '../Button/AddToBasket';
 import './card.scss';
 
 export interface IFullCard {
+  /** Заголовок */
   title: string;
+  /** Категория */
   category: string;
+  /** Описание */
   details: string;
+  /** Цена */
   price: number;
-  image: string;
+  /** Изображения */
+  image: string[];
 }
 
 export const FullCard: React.FC<IFullCard> = ({ title, category, price, details, image }) => (
   <article className="card full-card">
     <div className="galery">
       <div className="current-img">
-        <img width="100%" src={image} alt="" />
+        {image?.map((item, index) => index === 0 && <img width="100%" src={item} alt="" key={index} />)}
       </div>
       <div className="galery-img flex-column">
-        <img width="100%" src={image} alt="" />
-        <img width="100%" src={image} alt="" />
+        {image?.map((item, index) => (
+          <img width="100%" src={item} alt="" key={index} />
+        ))}
       </div>
     </div>
     <div className="flex-column align-items-start padding-left-24 inner-12">
