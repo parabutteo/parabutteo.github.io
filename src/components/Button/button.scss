@@ -1,4 +1,4 @@
-@import '../../app/styles/variables.scss';
+@import '../../app/styles/common.scss';
 
 @mixin disabled-element {
   opacity: .2;
@@ -9,11 +9,11 @@
   }
 }
 
-button {
+.button {
   border-radius: 4px;
 }
 
-button:not(.icon-btn) {
+.button:not(.icon-btn) {
   display: block;
   border: 2px solid $pink;
   padding: 12px 20px;

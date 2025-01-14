@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/common.scss';
 import { Button, Layout, Modal } from 'src/components';
 
 function App() {
