@@ -2,6 +2,10 @@ import React from 'react';
 import './header.scss';
 import { Logo } from '../Logo/Logo';
 
+/**
+ * "Хедер" приложения
+ */
+
 export const Header: React.FC = () => (
   <header className="header">
     <Logo />

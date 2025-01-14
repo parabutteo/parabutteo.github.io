@@ -2,9 +2,13 @@ import React from 'react';
 import './modal.scss';
 
 export interface IModal {
+  /** Обработчик закрытия */
   onClose: () => void;
+  /** Признак открытия */
   isOpen: boolean;
-  children: React.ReactNode | React.ReactNode[] | string;
+  /** Контент */
+  children: React.ReactNode | string;
+  /** Заголовок */
   title: string;
 }
 
