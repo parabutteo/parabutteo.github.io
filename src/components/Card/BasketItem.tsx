@@ -11,7 +11,9 @@ export interface IBasketItem {
   image: string;
 }
 
-/** Карточка товара из корзины */
+/**
+ * Карточка товара из корзины
+ */
 
 export const BasketItem: React.FC<IBasketItem> = ({ title, price, image }) => (
   <article className="card basket-card flex-row">

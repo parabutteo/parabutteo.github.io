@@ -10,4 +10,8 @@ const meta: Meta<typeof Layout> = {
 
 export default meta;
 
-export const Default = {};
+export const Default = {
+  args: {
+    children: 'Например какой-нибудь текст',
+  },
+};

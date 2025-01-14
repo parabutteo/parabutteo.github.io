@@ -13,7 +13,9 @@ export interface IShortCard {
   image: string;
 }
 
-/** Краткая карточка товара */
+/**
+ * Краткая карточка товара
+ */
 
 export const ShortCard: React.FC<IShortCard> = ({ title, price, details, image }) => (
   <article className="card short-card">

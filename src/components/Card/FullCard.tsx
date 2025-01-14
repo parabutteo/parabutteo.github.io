@@ -14,7 +14,9 @@ export interface IFullCard {
   /** Изображения */
   image: string[];
 }
-/** Детальная карточка товара */
+/**
+ * Детальная карточка товара
+ */
 
 export const FullCard: React.FC<IFullCard> = ({ title, category, price, details, image }) => (
   <article className="card full-card">

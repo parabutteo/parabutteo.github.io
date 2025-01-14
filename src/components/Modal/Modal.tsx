@@ -12,6 +12,12 @@ export interface IModal {
   title: string;
 }
 
+/**
+ * Компонент модального окна
+ *
+ * Обрабочик закрытия распространяется как на кнопку закрытия, так и на клик вне модалки (т.е. по оверлею)
+ */
+
 export const Modal: React.FC<IModal> = ({ onClose, isOpen, children, title }) => {
   if (!isOpen) return null;
 

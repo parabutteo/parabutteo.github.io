@@ -6,7 +6,9 @@ interface ILayout {
   children: React.ReactNode | string;
 }
 
-/** Общий "лейаут" приложения */
+/**
+ * Общий "лейаут" приложения
+ */
 
 export const Layout: React.FC<ILayout> = ({ children }: ILayout) => (
   <>
