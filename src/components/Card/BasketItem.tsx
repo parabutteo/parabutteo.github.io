@@ -3,14 +3,17 @@ import { AddToBasket } from '../Button/AddToBasket';
 import './card.scss';
 
 export interface IBasketItem {
+  /** Заголовок */
   title: string;
-  category: string;
-  details: string;
+  /** Цена */
   price: number;
+  /** Изображение */
   image: string;
 }
 
-export const BasketItem: React.FC<IBasketItem> = ({ title, category, price, details, image }) => (
+/** Карточка товара из корзины */
+
+export const BasketItem: React.FC<IBasketItem> = ({ title, price, image }) => (
   <article className="card basket-card flex-row">
     <img width="100%" src={image} alt="" />
     <div className="flex-column align-items-start padding-left-24 inner-12">

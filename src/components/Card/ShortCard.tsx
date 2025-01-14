@@ -3,11 +3,17 @@ import { AddToBasket } from '../Button/AddToBasket';
 import './card.scss';
 
 export interface IShortCard {
+  /** Заголовок */
   title: string;
+  /** Описание */
   details: string;
+  /** Цена */
   price: number;
+  /** Главное изображение */
   image: string;
 }
+
+/** Краткая карточка товара */
 
 export const ShortCard: React.FC<IShortCard> = ({ title, price, details, image }) => (
   <article className="card short-card">

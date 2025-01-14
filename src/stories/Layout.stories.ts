@@ -6,11 +6,8 @@ const meta: Meta<typeof Layout> = {
   title: 'Components/Layout',
   component: Layout,
   tags: ['autodocs'],
-  argTypes: {},
 };
 
 export default meta;
 
-export const Default = {
-  args: {},
-};
+export const Default = {};
