@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Layout, Modal } from 'src/components';
+import '../app/styles/common.scss';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);

@@ -1,5 +1,4 @@
 import React from 'react';
-import './button.scss';
 import clsx from 'clsx';
 
 interface IBtn extends React.ButtonHTMLAttributes<HTMLButtonElement> {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { AddToBasket } from '../Button/AddToBasket';
-import './card.scss';
 
 export interface IFullCard {
   /** Заголовок */

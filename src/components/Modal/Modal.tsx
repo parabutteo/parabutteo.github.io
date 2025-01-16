@@ -1,5 +1,4 @@
 import React from 'react';
-import './modal.scss';
 
 export interface IModal {
   /** Обработчик закрытия */

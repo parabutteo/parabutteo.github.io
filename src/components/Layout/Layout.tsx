@@ -1,6 +1,5 @@
 import React from 'react';
 import { Header } from '../Header/Header';
-import './layout.scss';
 
 interface ILayout {
   children: React.ReactNode | string;
