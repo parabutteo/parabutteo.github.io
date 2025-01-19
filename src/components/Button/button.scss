@@ -1,0 +1,79 @@
+@mixin disabled-element {
+  opacity: .2;
+  cursor: not-allowed;
+
+  * {
+    cursor: not-allowed;
+  }
+}
+
+.button {
+  border-radius: 4px;
+}
+
+.button:not(.icon-btn) {
+  display: block;
+  border: 2px solid $pink;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: transparent;
+  color: $pink;
+  transition: .2s;
+  cursor: pointer;
+
+  &:disabled {
+    @include disabled-element();
+  }
+
+  &.primary {
+    background-color: $dark;
+    color: $white;
+    border-color: $dark;
+  }
+
+  &:hover {
+    background-color: $dark;
+  }
+
+  &:not(.primary):hover {
+    background-color: $pink;
+    color: $white;
+  }
+
+  &:not(:disabled):active {
+    opacity: .8;
+  }
+}
+
+.counter {
+
+  button {
+    z-index: 1;
+  }
+
+  &.disabled {
+    @include disabled-element();
+  }
+
+  input {
+    border-left: none;
+    border-right: none;
+    border-top: 2px solid $pink;
+    border-bottom: 2px solid $pink;
+    height: 46.5px;
+    margin-left: -4px;
+    margin-right: -4px;
+    outline: none;
+    box-shadow: none;
+    width: 112px;
+    font-size: 16px;
+    padding: 8px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+	  display: none;
+  }
+}

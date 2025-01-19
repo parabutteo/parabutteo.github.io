@@ -1,0 +1,67 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+
+  &.short-card {
+    border: 1px solid rgba($coral, 0.1);
+    max-width: 33%;
+
+    img {
+      height: 450px;
+      object-fit: cover;
+    }
+  }
+
+  &.basket-card {
+    border: 1px solid rgba($coral, 0.1);
+
+    img {
+      width: 100px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .delete-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      cursor: pointer;
+      transition: 0.1s;
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      opacity: .6;
+  
+      &:hover {
+        opacity: 1;
+      }
+  
+      i {
+        color: $dark;
+        font-size: 16px;
+      }
+    }
+  }
+
+  &.full-card {
+    width: 1000px;
+    display: flex;
+
+    .galery {
+      display: flex;
+      
+      .current-img img {
+        width: 400px;
+        height: 560px;
+        object-fit: cover;
+      }
+
+      .galery-img {
+        gap: 12px;
+        margin-left: 12px;
+        width: 100px;
+      }
+    }
+  }
+}
