@@ -1,5 +1,13 @@
 main {
   padding: 24px;
-  // Временно задано, для демонстрации скользящей шапки
-  min-height: 150vh;
+  min-height: 100dvh;
+}
+
+main.light {
+  background-color: $white;
+}
+
+main.dark {
+  background-color: $dark;
+  color: $white;
 }

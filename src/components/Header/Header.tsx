@@ -1,5 +1,6 @@
 import React from 'react';
 import { Logo } from '../Logo/Logo';
+import { ThemeSwitcher } from '../Button/ThemeSwitcher';
 
 /**
  * "Хедер" приложения
@@ -18,6 +19,9 @@ export const Header: React.FC = () => (
         </li>
         <li>
           <a href="#">Контакты</a>
+        </li>
+        <li>
+          <ThemeSwitcher />
         </li>
       </ul>
     </nav>
