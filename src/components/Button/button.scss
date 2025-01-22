@@ -17,11 +17,19 @@
 }
 
 .button:not(.icon-btn) {
+  border: 2px solid $pink;
+  background-color: transparent;
+  color: $pink;
   display: block;
   padding: 12px 20px;
   font-size: 16px;
   transition: 0.2s;
   cursor: pointer;
+
+  &:not(.primary):hover {
+    background-color: $pink;
+    color: $white;
+  }
 
   &:not(:disabled):active {
     opacity: 0.8;
@@ -60,7 +68,7 @@
   }
 }
 
-.theme-switch {
+.theme-switch, .lang-switch {
   height: 40px;
   width: 40px;
   border: none;
@@ -80,11 +88,12 @@
   }
 }
 
+.lang-switch {
+  font-size: 16px;
+}
+
 main.light {
   .button:not(.icon-btn) {
-    border: 2px solid $pink;
-    background-color: transparent;
-    color: $pink;
 
     &:disabled {
       @include disabled-element('light');
@@ -95,36 +104,20 @@ main.light {
       color: $white;
       border-color: $dark;
     }
-  
-    &:hover {
-      background-color: $dark;
-    }
-  
-    &:not(.primary):hover {
-      background-color: $pink;
-      color: $white;
-    }
   }
 }
 
 main.dark {
   .button:not(.icon-btn) {
-    border: 2px solid $pink;
-    background-color: transparent;
-    color: $pink;
 
     &:disabled {
       @include disabled-element('dark');
     }
   
     &.primary {
-      background-color: $pink;
+      background-color: $accent;
       color: $white;
-      border-color: $pink;
-    }
-  
-    &:hover {
-      background-color: $pink;
+      border-color: $accent;
     }
   }
 }
