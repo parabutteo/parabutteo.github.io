@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './Button';
-import { Context } from 'src/app/Context';
+import { Context } from '../../app/Context';
 
 /**
  * Кнопка "сменить язык сайта"
@@ -11,7 +11,7 @@ export const LanguageSwitcher: React.FC = () => {
 
   return (
     <Button className="icon-btn lang-switch" onClick={toggleLang}>
-      {lang === 'ru' ? 'RU' : 'EN'}
+      {lang === 'ru' ? 'EN' : 'RU'}
     </Button>
   );
 };

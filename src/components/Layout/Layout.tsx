@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../Header/Header';
 import clsx from 'clsx';
-import { Context } from 'src/app/Context';
+import { Context } from '../../app/Context';
 
 interface ILayout {
   children: React.ReactNode | string;

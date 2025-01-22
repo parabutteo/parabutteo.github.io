@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Layout, Modal } from 'src/components';
+import { Button, Layout, Modal } from '../components';
 import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
 

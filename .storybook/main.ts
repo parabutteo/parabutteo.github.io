@@ -5,7 +5,8 @@ const config = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/preset-scss",
-    "@storybook/addon-mdx-gfm"
+    "@storybook/addon-mdx-gfm",
+    'storybook-react-i18next',
   ],
   framework: {
     name: "@storybook/react-webpack5",

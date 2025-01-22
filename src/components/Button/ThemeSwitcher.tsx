@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './Button';
 import clsx from 'clsx';
-import { Context } from 'src/app/Context';
+import { Context } from '../../app/Context';
 
 interface IThemeSwitcher {
   /** Признак заблокированности кнопки */
