@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Layout, Modal } from '../components';
 import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
+import { CategoryItems } from './layouts';
 
 export const App: React.FC = () => {
   const [modalInputValue, setModalInputValue] = React.useState<string | undefined>(undefined);
@@ -10,6 +11,7 @@ export const App: React.FC = () => {
   return (
     <ContextProvider>
       <Layout>
+        <CategoryItems />
         <div className="box">
           <h3 className="txt-default">Создай свою модалку!</h3>
           <div className="margin-bottom-16 margin-top-16 form">
