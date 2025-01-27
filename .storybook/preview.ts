@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react";
+import i18n from '../src/app/i18n/i18n';
 import "../src/app/styles/common.scss";
 
 const preview: Preview = {
@@ -10,6 +11,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    i18n,
   },
 };
 
