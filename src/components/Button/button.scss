@@ -26,6 +26,16 @@
   transition: 0.2s;
   cursor: pointer;
 
+  &:disabled {
+    @include disabled-element('light');
+  }
+
+  &.primary {
+    background-color: $dark;
+    color: $white;
+    border-color: $dark;
+  }
+
   &:not(.primary):hover {
     background-color: $pink;
     color: $white;
@@ -91,21 +101,6 @@
 
 .lang-switch {
   font-size: 16px;
-}
-
-main.light {
-  .button:not(.icon-btn) {
-
-    &:disabled {
-      @include disabled-element('light');
-    }
-  
-    &.primary {
-      background-color: $dark;
-      color: $white;
-      border-color: $dark;
-    }
-  }
 }
 
 main.dark {

@@ -19,7 +19,6 @@ export const App: React.FC = () => {
             <input placeholder="Текст" value={modalInputValue} onChange={(ev) => setModalInputValue(ev.target.value)} />
           </div>
           <Button
-            className="primary"
             onClick={() => setIsModalOpen(true)}
             disabled={modalInputValue === undefined || modalInputValue === ''}
           >

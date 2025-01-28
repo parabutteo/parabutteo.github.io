@@ -143,13 +143,11 @@ h3 {
   }
 }
 
-main.light {
-  .box {
-    border: 1px solid rgba($dark, 0.2);
-  }
-  input {
-    border: 1px solid rgba($dark, 0.3);
-  }
+.box {
+  border: 1px solid rgba($dark, 0.2);
+}
+input {
+  border: 1px solid rgba($dark, 0.3);
 }
 
 main.dark {
