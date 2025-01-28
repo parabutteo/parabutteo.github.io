@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Layout, Modal } from '../components';
 import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
-import { CategoryItems } from './layouts';
+import { CategoryItems } from '../entities';
 
 export const App: React.FC = () => {
   const [modalInputValue, setModalInputValue] = React.useState<string | undefined>(undefined);
