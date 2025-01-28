@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 
 export interface IModal {
   /** Обработчик закрытия */
@@ -27,16 +28,21 @@ export const Modal: React.FC<IModal> = ({ onClose, isOpen, children, title }) =>
   };
 
   return (
-    <div className="modal-wrapper" onClick={handleOverlayClick}>
-      <div className="modal-content">
-        <button className="icon-btn modal-close-btn" onClick={onClose}>
-          <i className="fa fa-close" />
-        </button>
-        <div className="modal-body">
-          <h2>{title}</h2>
-          {children}
-        </div>
-      </div>
-    </div>
+    <>
+      {createPortal(
+        <div className="modal-wrapper" onClick={handleOverlayClick}>
+          <div className="modal-content">
+            <button className="icon-btn modal-close-btn" onClick={onClose}>
+              <i className="fa fa-close" />
+            </button>
+            <div className="modal-body">
+              <h2>{title}</h2>
+              {children}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+    </>
   );
 };
