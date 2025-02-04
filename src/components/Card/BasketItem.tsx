@@ -12,6 +12,8 @@ export interface IBasketItem {
 
 /**
  * Карточка товара из корзины
+ *
+ * В компоненте присутсвтует паттерн "Render prop"
  */
 
 export const BasketItem: React.FC<IBasketItem> = ({ title, price, image }) => (

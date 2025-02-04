@@ -9,6 +9,8 @@ interface ILayout {
 
 /**
  * Общий "лейаут" приложения
+ *
+ * В компоненте встречается паттерн "Conditional rendering" и "Layout component"
  */
 
 export const Layout: React.FC<ILayout> = ({ children }: ILayout) => {

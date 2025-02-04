@@ -20,6 +20,8 @@ export interface IShortCard {
 
 /**
  * Краткая карточка товара
+ *
+ * В компоненте присутствуют паттерны "Destructuring props" "обратным" способом
  */
 
 export const ShortCard: React.FC<IShortCard> = ({ item }) => {

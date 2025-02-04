@@ -16,6 +16,8 @@ export interface IModal {
  * Компонент модального окна
  *
  * Обрабочик закрытия распространяется как на кнопку закрытия, так и на клик вне модалки (т.е. по оверлею)
+ * 
+ * В Компоненте присутствует паттерн "Children types"
  */
 
 export const Modal: React.FC<IModal> = ({ onClose, isOpen, children, title }) => {
