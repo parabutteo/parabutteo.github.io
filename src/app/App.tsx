@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Layout, Modal } from '../components';
 import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
+import { CategoryItems } from '../entities';
 
 export const App: React.FC = () => {
   const [modalInputValue, setModalInputValue] = React.useState<string | undefined>(undefined);
@@ -10,6 +11,7 @@ export const App: React.FC = () => {
   return (
     <ContextProvider>
       <Layout>
+        <CategoryItems />
         <div className="box">
           <h3 className="txt-default">Создай свою модалку!</h3>
           <div className="margin-bottom-16 margin-top-16 form">
@@ -17,7 +19,6 @@ export const App: React.FC = () => {
             <input placeholder="Текст" value={modalInputValue} onChange={(ev) => setModalInputValue(ev.target.value)} />
           </div>
           <Button
-            className="primary"
             onClick={() => setIsModalOpen(true)}
             disabled={modalInputValue === undefined || modalInputValue === ''}
           >

@@ -21,6 +21,10 @@ h3 {
 }
 
 .margin {
+  &-auto {
+    margin: 0 auto;
+  }
+
   &-left {
     &-12 {
       margin-left: 12px;
@@ -52,6 +56,10 @@ h3 {
 
     &-24 {
       margin-bottom: 24px;
+    }
+
+    &-32 {
+      margin-bottom: 32px;
     }
   }
 }
@@ -135,13 +143,11 @@ h3 {
   }
 }
 
-main.light {
-  .box {
-    border: 1px solid rgba($dark, 0.2);
-  }
-  input {
-    border: 1px solid rgba($dark, 0.3);
-  }
+.box {
+  border: 1px solid rgba($dark, 0.2);
+}
+input {
+  border: 1px solid rgba($dark, 0.3);
 }
 
 main.dark {
@@ -153,4 +159,11 @@ main.dark {
     background-color: $dark;
     color: $white;
   }
+}
+
+.grid {
+  margin-block-end: 24px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(calc(25% - 24px), 1fr));
 }
