@@ -15,6 +15,10 @@ interface IAddToBasket {
  * В качестве пропсов принимает признак isDisabled, указывающий на блокировку кнопки
  *
  * и counter для определения количества добавленных позиций
+ *
+ * В компоненте встречается паттерн "Conditional rendering"
+ *
+ * Компонент подходит под паттерн "High order component"
  */
 
 export const AddToBasket: React.FC<IAddToBasket> = ({ counter, isDisabled }) => {

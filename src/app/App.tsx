@@ -4,6 +4,12 @@ import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
 import { CategoryItems } from '../entities';
 
+/**
+ * Входной файл приложения
+ *
+ * В компоненте input присутствует паттерн "Controlled input"
+ */
+
 export const App: React.FC = () => {
   const [modalInputValue, setModalInputValue] = React.useState<string | undefined>(undefined);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);

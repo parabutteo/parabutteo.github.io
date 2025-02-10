@@ -14,6 +14,8 @@ interface IBtn extends React.ButtonHTMLAttributes<HTMLButtonElement> {
  * В качестве children передается содержимое кнопки в виде строки или разметки
  *
  * Также оддерживает дефолтные атрибуты для HTML-кнопок
+ *
+ * В компоненте присутствуют паттерны "Destructuring props" и "JSX spread attributes"
  */
 
 export const Button: React.FC<IBtn> = ({ children, className, ...buttonAttrs }) => (
