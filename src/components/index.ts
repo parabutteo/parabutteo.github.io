@@ -13,3 +13,4 @@ export { ShortCard } from './Card/ShortCard';
 export { BasketItem } from './Card/BasketItem';
 
 export { Resizer } from './Resizer/Resizer';
+export { Collapse } from './Collapse/Collapse';
