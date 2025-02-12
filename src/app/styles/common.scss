@@ -145,7 +145,13 @@ h3 {
 
 .box {
   border: 1px solid rgba($dark, 0.2);
+
+  &.resize {
+    position: relative;
+    overflow: hidden;
+  }
 }
+
 input {
   border: 1px solid rgba($dark, 0.3);
 }
