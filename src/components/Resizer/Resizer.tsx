@@ -20,6 +20,22 @@ interface IResizer {
 const minResizerWidth = 539;
 const minResizerHeight = 40;
 
+/**
+ * Компонент Resizer
+ *
+ * Опционально принимает минимальную высоту и ширину. При этом
+ * опциональные значения не могут быть меньше предустановленных
+ *
+ * В компоненте используется хук useMemo для повышения производительности
+ *
+ * @param className Опциональные классы
+ * @param initialWidth Начальная ширина
+ * @param initialHeight Начальная высота
+ * @param children Содержимое компонента
+ *
+ * @returns React.FC
+ */
+
 export const Resizer: React.FC<IResizer> = ({
   className,
   children,

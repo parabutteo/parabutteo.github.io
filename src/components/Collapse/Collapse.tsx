@@ -13,10 +13,24 @@ interface ICollapse {
   toggleOpen: () => void;
 }
 
+/**
+ * Компонент Collapse-панели
+ *
+ * Компонент исопльзует useLayoutEffect для динамического определения высоты содержимого
+ * и onTransitionEnd для добавления необходимой (если понадобится в будущем) логики после завершения анимации
+ *
+ * @param title Заголовок панели
+ * @param children Содержимое панели
+ * @param isOpen Флаг признак открытости
+ * @param toggleOpen Тогглер для открытия
+ *
+ * @returns React.FC
+ */
+
 export const Collapse: React.FC<ICollapse> = ({ title, children, isOpen = false, toggleOpen }) => {
   // Реф для блока с контентом
   const contentRef = React.useRef<HTMLDivElement>(null);
-  // Стейт для записи динамически определеной высоты children
+  // Стейт для хранения изначальной или динамически определеной высоты children
   const [contentHeight, setContentHeight] = React.useState(0);
 
   // Хендлер для смены состояния isOpen
@@ -29,8 +43,8 @@ export const Collapse: React.FC<ICollapse> = ({ title, children, isOpen = false,
     console.log('Анимация завершена!');
   };
 
-  // Эффект для измерения высоты содержимого при изменении isOpen
-  React.useEffect(() => {
+  // Эффект для измерения высоты содержимого при  значения флага isOpen
+  React.useLayoutEffect(() => {
     if (isOpen && contentRef.current) {
       const newHeight = contentRef.current.scrollHeight;
       setContentHeight(newHeight);
