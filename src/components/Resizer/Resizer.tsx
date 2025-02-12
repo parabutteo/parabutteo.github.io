@@ -29,7 +29,10 @@ export const Resizer: React.FC<IResizer> = ({
   // Реф родительского элемента
   const resizerRef = React.useRef<HTMLDivElement>();
   // Стейт размеров компонента
-  const [boxSize, setBoxSize] = React.useState({ width: initialWidth, height: initialHeight });
+  const [boxSize, setBoxSize] = React.useState({
+    width: initialWidth < minResizerWidth ? minResizerWidth : initialWidth,
+    height: initialHeight < minResizerHeight ? minResizerHeight : initialHeight,
+  });
 
   // Константа для новых размеров
   const newSizes = React.useRef(boxSize);
