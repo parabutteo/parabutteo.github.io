@@ -8,7 +8,7 @@ interface ICollapse {
   /** Содержимое панели */
   children: React.ReactNode;
   /** Флаг признак открытости */
-  isOpen?: boolean;
+  isOpen: boolean;
   /** Тогглер для открытия */
   toggleOpen: () => void;
 }
