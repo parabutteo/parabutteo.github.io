@@ -104,6 +104,27 @@ export const Resizer: React.FC<IResizer> = ({
     };
   }, []);
 
+  // ResizeObserver для отслеживания изменения размеров родительского элемента
+  React.useEffect(() => {
+    const resizer = resizerRef.current;
+
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      const { width, height } = entry.contentRect;
+      setBoxSize({ width, height });
+    });
+
+    if (resizer) {
+      observer.observe(resizer);
+    }
+
+    return () => {
+      if (resizer) {
+        observer.unobserve(resizer);
+      }
+    };
+  }, [resizerRef]);
+
   return (
     <div
       ref={resizerRef}
