@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import React from 'react';
 import { Button } from '../../../components';
+import clsx from 'clsx';
 
 interface IProfileForm {
   className: string;
@@ -11,24 +12,23 @@ type TProfileFormData = {
   aboutMe: string;
 };
 
-export const ProfileForm: React.FC<IProfileForm> = () => {
+export const ProfileForm: React.FC<IProfileForm> = ({ className }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-    ...attrs
   } = useForm<TProfileFormData>();
 
   const onSubmit = (data: TProfileFormData) => {
-    console.log('Введенные данные: ', data);
+    console.log('Введенные данные в форме профиля: ', data);
     reset();
   };
 
   return (
-    <form className="margin-bottom-32 box form" {...attrs} onSubmit={handleSubmit(onSubmit)}>
+    <form className={clsx('box', 'form', className)} onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="name">Имя</label>
-      <div className="input-container">
+      <div className="grid-content">
         <input
           {...register('name', {
             required: 'Пожалуйста, введите ваше имя',
@@ -37,6 +37,8 @@ export const ProfileForm: React.FC<IProfileForm> = () => {
               message: 'Недопустимые символы в имени',
             },
           })}
+          className={clsx(errors.name && 'error-field')}
+          type="text"
           id="name"
           placeholder="Введите имя"
         />
@@ -47,7 +49,7 @@ export const ProfileForm: React.FC<IProfileForm> = () => {
       <textarea
         {...register('aboutMe')}
         id="aboutMe"
-        className="input-container"
+        className="grid-content"
         rows={4}
         placeholder="Напишите пару слов о себе"
       />
