@@ -40,9 +40,9 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
           <input
             {...register('login', {
               required: 'Значение поля "логин" пустое',
-              pattern: isRegProcedure && {
-                value: /^[A-Za-z]+$/g,
-                message: 'Логин должен состоять только из латинских символов',
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: 'Введите корректный адрес электронной почты',
               },
             })}
             className={clsx(errors.login && 'error-field')}
