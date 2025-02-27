@@ -54,7 +54,9 @@ export const ProfileForm: React.FC<IProfileForm> = ({ className }) => {
         placeholder="Напишите пару слов о себе"
       />
 
-      <Button type="submit">Отправить</Button>
+      <Button className="small" type="submit">
+        Отправить
+      </Button>
     </form>
   );
 };
