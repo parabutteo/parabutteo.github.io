@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '../../../components';
 import clsx from 'clsx';
 
+// Тип для видов формы
 type TAuth = 'reg' | 'auth';
 
 type TAuthFormData = {
@@ -11,8 +12,22 @@ type TAuthFormData = {
 };
 
 interface IAuthForm {
+  /** Вид формы */
   authType: TAuth;
 }
+
+/**
+ * Компонент формы аутентификации
+ *
+ * Состоит из двух составляющих: регистрация и авторизация
+ *
+ * Тип формы прокидывается пропсом, но, также, сменяется по нажатию
+ * на соответствующую кнопку внутри компонента
+ *
+ * @param authType тип формы
+ *
+ * @returns React.FC
+ */
 
 export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
   const {
@@ -30,6 +45,14 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
     reset();
   };
+
+  // Эффект для обнуления формы при смене authType
+  React.useEffect(() => {
+    reset();
+    if (authType === 'auth') {
+      setAuthTypeInner('auth');
+    } else setAuthTypeInner('reg');
+  }, [authType, reset]);
 
   return (
     <div className="flex-column authorize-container">

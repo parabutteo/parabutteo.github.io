@@ -4,13 +4,22 @@ import { Button } from '../../../components';
 import clsx from 'clsx';
 
 interface IProfileForm {
-  className: string;
+  /** Опциональные классы */
+  className?: string;
 }
 
 type TProfileFormData = {
   name: string;
   aboutMe: string;
 };
+
+/**
+ * Компонент формы в профиле
+ *
+ * @param className опциональные css классы
+ *
+ * @returns React.FC
+ */
 
 export const ProfileForm: React.FC<IProfileForm> = ({ className }) => {
   const {

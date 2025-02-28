@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '../../../components';
 import clsx from 'clsx';
 
+// Тип для видов формы
 type TProcedure = 'add' | 'edit';
 
 type TAuthFormData = {
@@ -14,8 +15,19 @@ type TAuthFormData = {
 };
 
 interface IProductForm {
+  /** Вид формы */
   procedureType: TProcedure;
 }
+
+/**
+ * Компонент добавления/редактирования продукта
+ *
+ * Тип формы прокидывается пропсом
+ *
+ * @param procedureType тип процедуры
+ *
+ * @returns React.FC
+ */
 
 export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
   const {
@@ -25,12 +37,21 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
     formState: { errors },
   } = useForm<TAuthFormData>();
 
+  // Признак формы с типом "добавление товара"
   const isAddProcedure = procedureType === 'add';
+
+  // Заглушка для эмуляции вывода значения из базы
+  const defaultFieldValue = 'какое-то имеющееся значение поля';
 
   const onSubmit = (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isAddProcedure ? 'добавления товара' : 'редактирования товара'}: `, data);
     reset();
   };
+
+  // Эффект для обнуления формы при смене procedureType
+  React.useEffect(() => {
+    reset();
+  }, [procedureType, reset]);
 
   return (
     <div className="margin-bottom-32">
@@ -39,7 +60,7 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
         <label htmlFor="login">Название</label>
         <input
           {...register('title', {
-            value: !isAddProcedure ? 'какое-то имеющееся значние поля' : undefined,
+            value: !isAddProcedure ? defaultFieldValue : null,
             required: true,
           })}
           className={clsx(errors.title && 'error-field', 'grid-content')}
@@ -51,7 +72,7 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
         <label htmlFor="category">Категория</label>
         <select
           {...register('category', {
-            value: !isAddProcedure ? 't-shirts' : undefined,
+            value: !isAddProcedure ? 't-shirts' : null,
             required: true,
           })}
           className={clsx(errors.category && 'error-field', 'grid-content')}
@@ -66,7 +87,7 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
         <label htmlFor="imgPath">Путь к изображению</label>
         <textarea
           {...register('imgPath', {
-            value: !isAddProcedure ? ['какое-то имеющееся значние поля'] : undefined,
+            value: !isAddProcedure ? [defaultFieldValue] : undefined,
             required: true,
           })}
           className={clsx(errors.title && 'error-field', 'grid-content')}
@@ -77,7 +98,7 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
         <label htmlFor="login">Описание</label>
         <textarea
           {...register('describe', {
-            value: !isAddProcedure ? 'какое-то имеющееся значние поля' : undefined,
+            value: !isAddProcedure ? defaultFieldValue : undefined,
             required: true,
           })}
           className={clsx(errors.describe && 'error-field', 'grid-content')}
