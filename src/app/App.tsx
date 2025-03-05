@@ -30,7 +30,7 @@ export const App: React.FC = () => {
     <ContextProvider>
       <Layout>
         {/* Пример использования класса AccountService */}
-        <div className="margin-bottom-32">
+        <div className="box margin-bottom-32">
           <p>Скидка для премиум-пользователя: {userDiscount}%</p>
           <p>Скидка для премиум-пользователя на машину: {commonDiscount}%</p>
           <p>Итоговая цена для премиум-пользователя на машину: {finalPrice}₽</p>
