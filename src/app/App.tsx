@@ -4,6 +4,8 @@ import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
 import { CategoryItems } from '../entities';
 import { AuthForm, ProductForm, ProfileForm } from '../features/forms';
+import AccountService from '../features/account-service/AccountService';
+import { ProductType, UserType } from '../features/account-service/types';
 
 /**
  * Входной файл приложения
@@ -15,9 +17,25 @@ export const App: React.FC = () => {
   const [modalInputValue, setModalInputValue] = React.useState<string | undefined>(undefined);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
+  // Пример использования класса AccountService
+  const service = new AccountService();
+  const userType = UserType.Premium;
+  const initialPrice = 5000000;
+  const productType = ProductType.Car;
+  const userDiscount = service.getDiscount(userType);
+  const commonDiscount = service.getCommonDiscount(userType, productType);
+  const finalPrice = service.calculateFinalPrice(initialPrice, userType, productType);
+
   return (
     <ContextProvider>
       <Layout>
+        {/* Пример использования класса AccountService */}
+        <div className="margin-bottom-32">
+          <p>Скидка для премиум-пользователя: {userDiscount}%</p>
+          <p>Скидка для премиум-пользователя на машину: {commonDiscount}%</p>
+          <p>Итоговая цена для премиум-пользователя на машину: {finalPrice}₽</p>
+        </div>
+        {/* Конец Пример использования класса AccountService */}
         <ProfileForm className="margin-bottom-32" />
         <AuthForm authType="auth" />
         <ProductForm procedureType="add" />
