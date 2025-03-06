@@ -21,18 +21,28 @@ export const App: React.FC = () => {
   const service = new AccountService();
   const userType = UserType.Premium;
   const initialPrice = 5000000;
-  const productType = ProductType.Car;
+
   const userDiscount = service.getDiscount(userType);
-  const commonDiscount = service.getCommonDiscount(userType, productType);
-  const finalPrice = service.calculateFinalPrice(initialPrice, userType, productType);
+  const userProductDiscount = service.getUserProductDiscount(userType, ProductType.Car);
+  const commonDiscount = service.getCommonDiscount(userType, ProductType.Car);
+  const finalPrice = service.calculateFinalPrice(initialPrice, userType, ProductType.Car);
+
+  const discountListPromise = service.getUserProductsDiscountList();
+  discountListPromise.then((result) => {
+    console.log(result);
+  });
 
   return (
     <ContextProvider>
       <Layout>
         {/* Пример использования класса AccountService */}
         <div className="box margin-bottom-32">
-          <p>Скидка для премиум-пользователя: {userDiscount}%</p>
-          <p>Скидка для премиум-пользователя на машину: {commonDiscount}%</p>
+          <p>Скидка для премиум-пользователя: {userDiscount * 100}%</p>
+          <p>Скидка для премиум-пользователя на машину: {userProductDiscount * 100}%</p>
+          <hr />
+          <p>Итоговая скидка для премиум-пользователя на покупку машины: {commonDiscount}%</p>
+          <hr />
+          <p>Начальная цена за авто: {initialPrice}₽</p>
           <p>Итоговая цена для премиум-пользователя на машину: {finalPrice}₽</p>
         </div>
         {/* Конец Пример использования класса AccountService */}

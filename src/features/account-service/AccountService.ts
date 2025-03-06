@@ -1,52 +1,90 @@
 import { UserType, ProductType } from './types';
 
 class AccountService {
-  private userDiscounts: { [key in UserType]: number } = {
-    [UserType.Standard]: 0, // без скидки
-    [UserType.Premium]: 10, // 10% скидка
-    [UserType.Gold]: 20, // 20% скидка
-    [UserType.Free]: 30, // 30% скиндка
-  };
+  private userDiscounts: { userType: UserType; discount: number }[];
+  private productsList: { id: number; title: ProductType }[];
+  private userProductsDiscount: { userType: UserType; productId: number; discount: number }[];
 
-  private productDiscounts: { [key in ProductType]: { [key in UserType]: number } } = {
-    [ProductType.Car]: {
-      [UserType.Standard]: 0,
-      [UserType.Premium]: 5, // доп. скидка для покупки машины премиум-пользователем
-      [UserType.Gold]: 10, // доп. скидка для покупки машины золотым-пользователем
-      [UserType.Free]: 20, // доп. скидка для покупки машины free-пользователем
-    },
-    [ProductType.Toy]: {
-      [UserType.Standard]: 0,
-      [UserType.Premium]: 10,
-      [UserType.Gold]: 20,
-      [UserType.Free]: 30,
-    },
-    [ProductType.Food]: {
-      [UserType.Standard]: 0,
-      [UserType.Premium]: 2,
-      [UserType.Gold]: 4,
-      [UserType.Free]: 12,
-    },
-  };
-
-  // Метод формирования общей скидки (скидки суммируются)
-  getCommonDiscount(userType: UserType, productType: ProductType): number {
-    const userDiscount = this.userDiscounts[userType];
-    const productDiscount = this.productDiscounts[productType][userType] || 0;
-    return userDiscount + productDiscount;
+  constructor() {
+    this.userDiscounts = [
+      { userType: UserType.Standard, discount: 0 },
+      { userType: UserType.Premium, discount: 0.1 },
+      { userType: UserType.Gold, discount: 0.2 },
+      { userType: UserType.Free, discount: 0.3 },
+    ];
+    this.productsList = [
+      { id: 1, title: ProductType.Car },
+      { id: 2, title: ProductType.Food },
+      { id: 3, title: ProductType.Toy },
+    ];
+    this.userProductsDiscount = [
+      { userType: UserType.Standard, productId: 1, discount: 0 },
+      { userType: UserType.Standard, productId: 2, discount: 0 },
+      { userType: UserType.Standard, productId: 3, discount: 0 },
+      { userType: UserType.Premium, productId: 1, discount: 0.05 },
+      { userType: UserType.Premium, productId: 2, discount: 0.1 },
+      { userType: UserType.Premium, productId: 3, discount: 0.02 },
+      { userType: UserType.Gold, productId: 1, discount: 0.1 },
+      { userType: UserType.Gold, productId: 2, discount: 0.2 },
+      { userType: UserType.Gold, productId: 3, discount: 0.04 },
+      { userType: UserType.Free, productId: 1, discount: 0.2 },
+      { userType: UserType.Free, productId: 2, discount: 0.3 },
+      { userType: UserType.Free, productId: 3, discount: 0.12 },
+    ];
   }
 
-  // Метод формирования конечной цены
-  calculateFinalPrice(initialPrice: number, userType: UserType, productType: ProductType): number {
-    const discount = this.getCommonDiscount(userType, productType);
-    const discountAmount = (initialPrice / 100) * discount;
-    return initialPrice - discountAmount;
+  // Метод получения списка скидок по статусам профилей
+  public getUserDiscounts() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.userDiscounts);
+      }, 1000);
+    });
+  }
+  // Метод получения списка товаров
+  public getProductsList() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.productsList);
+      }, 1000);
+    });
+  }
+  // Метод получения скидок на определенный товар по типам профилей
+  public getUserProductsDiscountList() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.userProductsDiscount);
+      }, 1000);
+    });
+  }
+
+  // Метод получения id товара по названию
+  public getProductId(productTitle: ProductType): number {
+    const productId = this.productsList.find((id) => id.title === productTitle);
+    return productId?.id;
   }
 
   // Метод получения скидки для пользователя по статусам
-  getDiscount(userType: UserType): number {
-    const userDiscount = this.userDiscounts[userType];
-    return userDiscount;
+  public getDiscount(userType: UserType): number {
+    const userDiscount = this.userDiscounts.find((discount) => discount.userType === userType);
+    return userDiscount?.discount;
+  }
+  // Метод получения скидки на определенный товар для конкретного статуса
+  public getUserProductDiscount(userType: UserType, productTitle: ProductType): number {
+    const discountItem = this.userProductsDiscount.find(
+      (item) => item.userType === userType && item.productId === this.getProductId(productTitle)
+    );
+    return discountItem?.discount;
+  }
+  // Метод формирования общей скидки (скидки суммируются)
+  public getCommonDiscount(userType: UserType, productTitle: ProductType): number {
+    const commonDiscount = this.getDiscount(userType) * 100 + this.getUserProductDiscount(userType, productTitle) * 100;
+    return commonDiscount;
+  }
+  // Метод формирования конечной цены
+  calculateFinalPrice(initialPrice: number, userType: UserType, productTitle: ProductType): number {
+    const discountAmount = (initialPrice / 100) * this.getCommonDiscount(userType, productTitle);
+    return initialPrice - discountAmount;
   }
 }
 
