@@ -4,6 +4,8 @@ import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
 import { CategoryItems } from '../entities';
 import { AuthForm, ProductForm, ProfileForm } from '../features/forms';
+import AccountService from '../features/account-service/AccountService';
+import { ProductType, UserType } from '../features/account-service/types';
 
 /**
  * Входной файл приложения
@@ -15,9 +17,35 @@ export const App: React.FC = () => {
   const [modalInputValue, setModalInputValue] = React.useState<string | undefined>(undefined);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
+  // Пример использования класса AccountService
+  const service = new AccountService();
+  const userType = UserType.Premium;
+  const initialPrice = 5000000;
+
+  const userDiscount = service.getDiscount(userType);
+  const userProductDiscount = service.getUserProductDiscount(userType, ProductType.Car);
+  const commonDiscount = service.getCommonDiscount(userType, ProductType.Car);
+  const finalPrice = service.calculateFinalPrice(initialPrice, userType, ProductType.Car);
+
+  const discountListPromise = service.getUserProductsDiscountList();
+  discountListPromise.then((result) => {
+    console.log(result);
+  });
+
   return (
     <ContextProvider>
       <Layout>
+        {/* Пример использования класса AccountService */}
+        <div className="box margin-bottom-32">
+          <p>Скидка для премиум-пользователя: {userDiscount * 100}%</p>
+          <p>Скидка для премиум-пользователя на машину: {userProductDiscount * 100}%</p>
+          <hr />
+          <p>Итоговая скидка для премиум-пользователя на покупку машины: {commonDiscount}%</p>
+          <hr />
+          <p>Начальная цена за авто: {initialPrice}₽</p>
+          <p>Итоговая цена для премиум-пользователя на машину: {finalPrice}₽</p>
+        </div>
+        {/* Конец Пример использования класса AccountService */}
         <ProfileForm className="margin-bottom-32" />
         <AuthForm authType="auth" />
         <ProductForm procedureType="add" />
