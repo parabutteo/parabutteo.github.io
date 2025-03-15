@@ -18,13 +18,19 @@ export const Header: React.FC = () => {
         <nav className="nav">
           <ul>
             <li>
-              <a href="#">{t('header.main')}</a>
+              <a href="magic">Защищенный роут</a>
             </li>
             <li>
-              <a href="#">{t('header.about-us')}</a>
+              <a href="sdsadas">404</a>
             </li>
             <li>
-              <a href="#">{t('header.contacts')}</a>
+              <a href="admin">{t('header.admin-panel')}</a>
+            </li>
+            <li>
+              <a href="profile">{t('header.profile')}</a>
+            </li>
+            <li>
+              <a href="basket">{t('header.basket')}</a>
             </li>
           </ul>
         </nav>

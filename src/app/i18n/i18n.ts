@@ -5,18 +5,18 @@ const resources = {
   en: {
     translation: {
       header: {
-        main: 'Home',
-        'about-us': 'About us',
-        contacts: 'Contacts',
+        profile: 'Profile',
+        'admin-panel': 'Admin panel',
+        basket: 'Basket',
       },
     },
   },
   ru: {
     translation: {
       header: {
-        main: 'Главная',
-        'about-us': 'О нас',
-        contacts: 'Контакты',
+        profile: 'Профиль',
+        'admin-panel': 'Панель администратора',
+        basket: 'Корзина',
       },
     },
   },
