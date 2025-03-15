@@ -6,7 +6,7 @@ import React from 'react';
 
 export const Logo: React.FC = () => {
   return (
-    <a href="#" className="logo">
+    <a href="/" className="logo">
       Vintagevault
     </a>
   );

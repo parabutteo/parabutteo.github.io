@@ -54,74 +54,71 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
   }, [procedureType, reset]);
 
   return (
-    <div className="margin-bottom-32">
-      <h3 className="margin-bottom-8">{isAddProcedure ? 'Добавление нового' : 'Редактирование имеющегося'} товара</h3>
-      <form className="box form " onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="login">Название</label>
-        <input
-          {...register('title', {
-            value: !isAddProcedure ? defaultFieldValue : null,
-            required: true,
-          })}
-          className={clsx(errors.title && 'error-field', 'grid-content')}
-          type="text"
-          id="title"
-          placeholder="Введите название"
-        />
+    <form className="margin-top-24 form" onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="login">Название</label>
+      <input
+        {...register('title', {
+          value: !isAddProcedure ? defaultFieldValue : null,
+          required: true,
+        })}
+        className={clsx(errors.title && 'error-field', 'grid-content')}
+        type="text"
+        id="title"
+        placeholder="Введите название"
+      />
 
-        <label htmlFor="category">Категория</label>
-        <select
-          {...register('category', {
-            value: !isAddProcedure ? 't-shirts' : null,
-            required: true,
-          })}
-          className={clsx(errors.category && 'error-field', 'grid-content')}
-          id="category"
-        >
-          <option value="">Выберите категорию</option>
-          <option value="t-shirts">Футболки, рубашки</option>
-          <option value="clothes">Верхняя одежда</option>
-          <option value="boots">Обувь</option>
-        </select>
+      <label htmlFor="category">Категория</label>
+      <select
+        {...register('category', {
+          value: !isAddProcedure ? 't-shirts' : null,
+          required: true,
+        })}
+        className={clsx(errors.category && 'error-field', 'grid-content')}
+        id="category"
+      >
+        <option value="">Выберите категорию</option>
+        <option value="t-shirts">Футболки, рубашки</option>
+        <option value="clothes">Верхняя одежда</option>
+        <option value="boots">Обувь</option>
+      </select>
 
-        <label htmlFor="imgPath">Путь к изображению</label>
-        <textarea
-          {...register('imgPath', {
-            value: !isAddProcedure ? [defaultFieldValue] : undefined,
-            required: true,
-          })}
-          className={clsx(errors.title && 'error-field', 'grid-content')}
-          id="imgPath"
-          placeholder="Введите адреса через запятую"
-        />
+      <label htmlFor="imgPath">Путь к изображению</label>
+      <textarea
+        {...register('imgPath', {
+          value: !isAddProcedure ? [defaultFieldValue] : undefined,
+          required: true,
+        })}
+        className={clsx(errors.title && 'error-field', 'grid-content')}
+        id="imgPath"
+        placeholder="Введите адреса через запятую"
+      />
 
-        <label htmlFor="login">Описание</label>
-        <textarea
-          {...register('describe', {
-            value: !isAddProcedure ? defaultFieldValue : undefined,
-            required: true,
-          })}
-          className={clsx(errors.describe && 'error-field', 'grid-content')}
-          id="describe"
-          placeholder="Введите описание"
-        />
+      <label htmlFor="login">Описание</label>
+      <textarea
+        {...register('describe', {
+          value: !isAddProcedure ? defaultFieldValue : undefined,
+          required: true,
+        })}
+        className={clsx(errors.describe && 'error-field', 'grid-content')}
+        id="describe"
+        placeholder="Введите описание"
+      />
 
-        <label htmlFor="login">Цена</label>
-        <input
-          {...register('price', {
-            value: !isAddProcedure ? 10000 : undefined,
-            required: true,
-          })}
-          className={clsx(errors.price && 'error-field', 'grid-content')}
-          type="number"
-          id="price"
-          placeholder="Введите цену"
-        />
+      <label htmlFor="login">Цена</label>
+      <input
+        {...register('price', {
+          value: !isAddProcedure ? 10000 : undefined,
+          required: true,
+        })}
+        className={clsx(errors.price && 'error-field', 'grid-content')}
+        type="number"
+        id="price"
+        placeholder="Введите цену"
+      />
 
-        <Button className="small" type="submit">
-          {isAddProcedure ? 'Добавить' : 'Сохранить'}
-        </Button>
-      </form>
-    </div>
+      <Button className="small margin-top-8" type="submit">
+        {isAddProcedure ? 'Добавить' : 'Сохранить'}
+      </Button>
+    </form>
   );
 };
