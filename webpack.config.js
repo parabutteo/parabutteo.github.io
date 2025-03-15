@@ -33,7 +33,7 @@ module.exports = (_, args) => {
       path: dist,
       publicPath:
         args.mode === 'development'
-          ? `https://parabutteo.github.io/`
+          ? `https://parabutteo.github.io:443/`
           : undefined /* <- прописать данные своего github */,
       filename: `js/[name].js`,
       chunkFilename: `js/[name].js`,
