@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Collapse, Layout, Modal, Resizer } from '../components';
 import AccountService from '../features/account-service/AccountService';
 import { ProductType, UserType } from '../features/account-service/types';
-import { ProductForm } from 'src/features/forms';
 
 export const Magic: React.FC = () => {
   // Пример использования класса AccountService

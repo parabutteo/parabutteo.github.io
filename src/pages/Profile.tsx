@@ -2,15 +2,6 @@ import React from 'react';
 import { Button, Layout } from '../components';
 import { ProfileForm } from '../features/forms';
 
-export interface IBasketItem {
-  /** Заголовок */
-  title: string;
-  /** Цена */
-  price: number;
-  /** Изображение */
-  image: string;
-}
-
 export type ProfileT = {
   name: string;
   aboutMe: string;

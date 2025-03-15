@@ -4,6 +4,7 @@ import { ContextProvider } from './ContextProvider';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { NotFoundPage } from '../pages';
 import { routes } from '../pages/routes';
+import { AccessDenied } from 'src/pages/AccessDenied';
 
 /**
  * Входной файл приложения
@@ -12,7 +13,8 @@ import { routes } from '../pages/routes';
  */
 
 export const App: React.FC = () => {
-  const isAuth = false;
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAuth = urlParams.has('user') && urlParams.get('user') === 'auth';
 
   return (
     <ContextProvider>
@@ -20,7 +22,7 @@ export const App: React.FC = () => {
         <Routes>
           {routes.map((route) => {
             if (route.isAuth && !isAuth) {
-              return false;
+              return <Route key="access-denied" path="/magic" element={<AccessDenied />} />;
             }
             return <Route key={route.path} path={route.path} element={<route.component />} />;
           })}
