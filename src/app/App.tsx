@@ -22,7 +22,7 @@ export const App: React.FC = () => {
         <Routes>
           {routes.map((route) => {
             if (route.isAuth && !isAuth) {
-              return <Route key="access-denied" path="/magic" element={<AccessDenied />} />;
+              return <Route key="access-denied" path="magic" element={<AccessDenied />} />;
             }
             return <Route key={route.path} path={route.path} element={<route.component />} />;
           })}

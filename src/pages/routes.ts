@@ -7,32 +7,32 @@ import { Admin } from './Admin';
 
 export const routes = [
   {
-    path: '/auth',
+    path: 'auth',
     component: Auth,
     isAuth: false,
   },
   {
-    path: '/',
+    path: '',
     component: Catalog,
     isAuth: false,
   },
   {
-    path: '/profile',
+    path: 'profile',
     component: Profile,
     isAuth: false,
   },
   {
-    path: '/basket',
+    path: 'basket',
     component: Basket,
     isAuth: false,
   },
   {
-    path: '/admin',
+    path: 'admin',
     component: Admin,
     isAuth: false,
   },
   {
-    path: '/magic',
+    path: 'magic',
     component: Magic,
     isAuth: true,
   },
