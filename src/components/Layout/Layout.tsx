@@ -19,7 +19,9 @@ export const Layout: React.FC<ILayout> = ({ children }: ILayout) => {
   return (
     <>
       <Header />
-      <main className={clsx(theme === 'light' ? 'light' : 'dark')}>{children}</main>
+      <main className={clsx(theme === 'light' ? 'light' : 'dark')}>
+        <div className="main-content">{children}</div>
+      </main>
     </>
   );
 };
