@@ -18,7 +18,7 @@ export const App: React.FC = () => {
 
   return (
     <ContextProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           {routes.map((route) => {
             if (route.isAuth && !isAuth) {
