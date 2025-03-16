@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Logo } from '../Logo/Logo';
 import { ThemeSwitcher } from '../Button/ThemeSwitcher';
 import { LanguageSwitcher } from '../Button/LanguageSwitcher';
+import { NavLink } from 'react-router-dom';
 
 /**
  * "Хедер" приложения
@@ -18,19 +19,19 @@ export const Header: React.FC = () => {
         <nav className="nav">
           <ul>
             <li>
-              <a href="magic">Защищенный роут</a>
+              <NavLink to="/magic">Защищенный роут</NavLink>
             </li>
             <li>
-              <a href="sdsadas">404</a>
+              <NavLink to="/sdsadas">404</NavLink>
             </li>
             <li>
-              <a href="admin">{t('header.admin-panel')}</a>
+              <NavLink to="/admin">{t('header.admin-panel')}</NavLink>
             </li>
             <li>
-              <a href="profile">{t('header.profile')}</a>
+              <NavLink to="/profile">{t('header.profile')}</NavLink>
             </li>
             <li>
-              <a href="basket">{t('header.basket')}</a>
+              <NavLink to="/basket">{t('header.basket')}</NavLink>
             </li>
           </ul>
         </nav>
