@@ -34,9 +34,9 @@ export const App: React.FC = () => {
   });
 
   return (
-    <BrowserRouter basename="/parabutteo.github.io/">
+    <BrowserRouter basename="/">
       <Routes>
-        <Route path="/" element={<div>Initial page</div>} />
+        <Route path="/" element={<div>Initial page3</div>} />
         <Route path="/one" element={<div>One page</div>} />
         <Route path="/two" element={<div>Two page</div>} />
       </Routes>
