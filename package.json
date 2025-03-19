@@ -2,7 +2,7 @@
   "name": "react-start-template",
   "version": "1.0.0",
   "description": "Start repo with required configuration",
-  "homepage": "https://parabutteo.github.io/gg",
+  "homepage": "https://parabutteo.github.io/",
   "main": "src/index.tsx",
   "author": "Igor <spirit-drive@yandex.ru>",
   "scripts": {
