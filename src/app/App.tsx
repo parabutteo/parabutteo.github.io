@@ -36,7 +36,7 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route path="/" element={<div>Initial page114</div>} />
+        <Route path="/" element={<div>Initial page1114</div>} />
         <Route path="/one" element={<div>One page</div>} />
         <Route path="/two" element={<div>Two page</div>} />
       </Routes>

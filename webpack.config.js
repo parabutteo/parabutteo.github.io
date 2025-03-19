@@ -36,7 +36,7 @@ module.exports = (_, args) => {
       publicPath:
         args.mode === 'development'
           ? `http://${host}:${port}/`
-          : 'parabutteo.github.io/' /* <- прописать данные своего github */,
+          : 'parabutteo.github.io' /* <- прописать данные своего github */,
       filename: `js/[name].js`,
       chunkFilename: `js/[name].js`,
     },
