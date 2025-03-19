@@ -17,7 +17,9 @@ module.exports = (_, args) => {
       open: true,
       port,
       hot: true,
-      historyApiFallback: true,
+      historyApiFallback: {
+        rewrites: [{ from: /\//, to: '/404.html' }],
+      },
       host,
     },
     resolve: {
