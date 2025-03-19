@@ -18,7 +18,7 @@ module.exports = (_, args) => {
       port,
       hot: true,
       historyApiFallback: {
-        rewrites: [{ from: /\//, to: '/404.html' }],
+        rewrites: [{ from: /\/parabutteo.github.io\/[^?]/, to: '/404.html' }],
       },
       host,
     },
@@ -33,7 +33,10 @@ module.exports = (_, args) => {
     entry: './index.tsx',
     output: {
       path: dist,
-      publicPath: args.mode === 'development' ? `http://${host}:${port}/` : '/' /* <- прописать данные своего github */,
+      publicPath:
+        args.mode === 'development'
+          ? `http://${host}:${port}/`
+          : 'parabutteo.github.io/' /* <- прописать данные своего github */,
       filename: `js/[name].js`,
       chunkFilename: `js/[name].js`,
     },
