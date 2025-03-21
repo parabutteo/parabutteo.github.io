@@ -17,9 +17,7 @@ module.exports = (_, args) => {
       open: true,
       port,
       hot: true,
-      historyApiFallback: {
-        rewrites: [{ from: /\/parabutteo.github.io\/[^?]/, to: '/404.html' }],
-      },
+      historyApiFallback: false,
       host,
     },
     resolve: {
@@ -36,7 +34,7 @@ module.exports = (_, args) => {
       publicPath:
         args.mode === 'development'
           ? `http://${host}:${port}/`
-          : 'parabutteo.github.io' /* <- прописать данные своего github */,
+          : 'parabutteo.github.io/' /* <- прописать данные своего github */,
       filename: `js/[name].js`,
       chunkFilename: `js/[name].js`,
     },
