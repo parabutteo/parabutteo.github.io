@@ -6,7 +6,7 @@
   "author": "Igor <spirit-drive@yandex.ru>",
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && cp src/404.html dist/404.html",
     "test": "jest src/feature",
     "lint": "eslint src --fix",
     "storybook": "storybook dev -p 6006",
