@@ -2,8 +2,7 @@ import React from 'react';
 import '../app/styles/common.scss';
 import { ContextProvider } from './ContextProvider';
 import { Route, Routes } from 'react-router-dom';
-import { NotFoundPage } from '../pages';
-import { routes } from '../pages/routes';
+import { Admin, Auth, Basket, Catalog, Magic, NotFoundPage, Profile } from '../pages';
 import { AccessDenied } from 'src/pages/AccessDenied';
 
 /**
@@ -19,12 +18,12 @@ export const App: React.FC = () => {
   return (
     <ContextProvider>
       <Routes>
-        {routes.map((route) => {
-          if (route.isAuth && !userIsAuth) {
-            return <Route key="access-denied" path="magic" element={<AccessDenied />} />;
-          }
-          return <Route key={route.path} path={route.path} element={<route.component />} />;
-        })}
+        <Route path="/auth" element={<Auth />} />
+        <Route path="" element={<Catalog />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/magic" element={userIsAuth ? <Magic /> : <AccessDenied />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </ContextProvider>
