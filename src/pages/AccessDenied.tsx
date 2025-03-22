@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from '../components';
+import { Link } from 'react-router-dom';
 
 export const AccessDenied: React.FC = () => (
   <Layout>
@@ -8,7 +9,7 @@ export const AccessDenied: React.FC = () => (
     <p className="margin-top-8">Вы можете:</p>
     <ul>
       <li>
-        вернуться на <a href="/">главную</a>
+        вернуться на <Link to="/">главную</Link>
       </li>
       <li>&laquo;авторизоваться&raquo; добавив в&nbsp;урл дописку ?user=auth</li>
     </ul>

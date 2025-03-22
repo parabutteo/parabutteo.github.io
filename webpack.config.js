@@ -31,7 +31,7 @@ module.exports = (_, args) => {
     entry: './index.tsx',
     output: {
       path: dist,
-      publicPath: args.mode === 'development' ? `http://${host}:${port}/` : '/' /* <- прописать данные своего github */,
+      publicPath: args.mode === 'development' ? `http://${host}:${port}/` : 'https://parabutteo.github.io/',
       filename: `js/[name].js`,
       chunkFilename: `js/[name].js`,
     },
