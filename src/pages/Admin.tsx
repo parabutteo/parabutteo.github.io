@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Layout, Modal } from '../components';
-import { ProductForm } from 'src/features/forms';
+import { Button, Layout } from '../components';
 import { Outlet } from 'react-router-dom';
+import { ModalItem } from 'src/entities/ModalItem';
 
 export const Admin: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);
@@ -30,13 +30,7 @@ export const Admin: React.FC = () => {
           Редактировать товар
         </Button>
       </div>
-      <Modal
-        title={`${modalType === 'add' ? 'Добавление нового' : 'Редактирование имеющегося'} товара`}
-        isOpen={isOpenModal}
-        onClose={() => setIsOpenModal(false)}
-      >
-        <ProductForm procedureType={modalType === 'add' ? 'add' : 'edit'} />
-      </Modal>
+      <ModalItem modalType={modalType} isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} />
       <Outlet />
     </Layout>
   );

@@ -6,17 +6,17 @@ import { useNavigate } from 'react-router-dom';
 interface ModalItemProps {
   modalType: 'edit' | 'add';
   isOpen?: boolean;
-  setIsOpen?: () => void,
+  onClose?: () => void;
 }
 
-export const ModalItem: React.FC<ModalItemProps> = ({ modalType, isOpen = true, setIsOpen }) => {
+export const ModalItem: React.FC<ModalItemProps> = ({ modalType, isOpen = true, onClose }) => {
   const navigate = useNavigate();
 
   return (
     <Modal
       title={`${modalType === 'add' ? 'Добавление нового' : 'Редактирование имеющегося'} товара`}
       isOpen={isOpen}
-      onClose={setIsOpen === undefined ? () => navigate('/admin') : setIsOpen}
+      onClose={onClose === undefined ? () => navigate('/admin') : onClose}
     >
       <ProductForm procedureType={modalType === 'add' ? 'add' : 'edit'} />
     </Modal>
