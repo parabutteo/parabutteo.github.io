@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Layout, Modal } from '../components';
 import { ProductForm } from 'src/features/forms';
+import { Outlet } from 'react-router-dom';
 
 export const Admin: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);
@@ -36,6 +37,7 @@ export const Admin: React.FC = () => {
       >
         <ProductForm procedureType={modalType === 'add' ? 'add' : 'edit'} />
       </Modal>
+      <Outlet />
     </Layout>
   );
 };
