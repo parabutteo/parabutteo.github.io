@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Логотип сайта
@@ -6,8 +7,8 @@ import React from 'react';
 
 export const Logo: React.FC = () => {
   return (
-    <a href="#" className="logo">
+    <Link to="/" className="logo">
       Vintagevault
-    </a>
+    </Link>
   );
 };

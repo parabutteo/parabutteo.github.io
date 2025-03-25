@@ -35,6 +35,10 @@
           &:active {
             opacity: .6;
           }
+
+          &.active {
+            border-bottom: 2px solid $pink;
+          }
         }
       } 
     }
