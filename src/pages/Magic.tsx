@@ -24,9 +24,7 @@ export const Magic: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
   return (
-    <Layout>
-      <h1 className="margin-bottom-32">Все подряд, что накопилось</h1>
-
+    <Layout title="Все подряд, что накопилось">
       {/* Пример использования класса AccountService */}
       <div className="box margin-bottom-32">
         <p>Скидка для премиум-пользователя: {userDiscount * 100}%</p>

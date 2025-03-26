@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProductForm } from 'src/features/forms';
-import { Modal } from 'src/components';
+import { ProductForm } from '../features/forms';
+import { Modal } from '../components';
 import { useNavigate } from 'react-router-dom';
 
 interface ModalItemProps {

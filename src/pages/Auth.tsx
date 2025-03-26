@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthForm } from 'src/features/forms';
+import { AuthForm } from '../features/forms';
 
 export const Auth: React.FC = () => (
   <div className="min-height-100vh flex-row align-items-center">

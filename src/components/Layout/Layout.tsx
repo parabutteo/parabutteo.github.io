@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Context } from '../../app/Context';
 
 interface ILayout {
+  title: string;
   children: React.ReactNode | string;
 }
 
@@ -13,13 +14,14 @@ interface ILayout {
  * В компоненте встречается паттерн "Conditional rendering" и "Layout component"
  */
 
-export const Layout: React.FC<ILayout> = ({ children }: ILayout) => {
+export const Layout: React.FC<ILayout> = ({ children, title }: ILayout) => {
   const { theme } = React.useContext(Context);
 
   return (
     <>
       <Header />
       <main className={clsx(theme === 'light' ? 'light' : 'dark')}>
+        {!!title && <h1 className="margin-bottom-32">{title}</h1>}
         <div className="main-content">{children}</div>
       </main>
     </>

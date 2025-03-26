@@ -1,15 +1,14 @@
 import React from 'react';
 import { Button, Layout } from '../components';
 import { Outlet } from 'react-router-dom';
-import { ModalItem } from 'src/entities/ModalItem';
+import { ModalItem } from '../entities/ModalItem';
 
 export const Admin: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);
   const [modalType, setModalType] = React.useState<'edit' | 'add'>('add');
 
   return (
-    <Layout>
-      <h1 className="margin-bottom-32">Администраторская панель</h1>
+    <Layout title="Администраторская панель">
       <div className="flex-row">
         <Button
           className="primary"

@@ -20,8 +20,7 @@ export const Profile: React.FC = () => {
   };
 
   return (
-    <Layout>
-      <h1 className="margin-bottom-32">Профиль</h1>
+    <Layout title="Профиль">
       {!isEditMode ? (
         <>
           <dl className="list">

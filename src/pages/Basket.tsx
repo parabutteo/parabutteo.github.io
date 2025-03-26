@@ -2,8 +2,7 @@ import React from 'react';
 import { BasketItem, Layout } from '../components';
 
 export const Basket: React.FC = () => (
-  <Layout>
-    <h1 className="margin-bottom-32">Корзина</h1>
+  <Layout title="Корзина">
     <BasketItem
       title="Жилетка"
       price={4000}

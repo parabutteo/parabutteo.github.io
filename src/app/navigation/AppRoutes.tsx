@@ -1,8 +1,8 @@
 import React from 'react';
-import {  Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Admin, Auth, Basket, Catalog, Magic, NotFoundPage, Profile } from '../../pages';
-import { AccessDenied } from 'src/pages/AccessDenied';
-import { ModalItem } from 'src/entities/ModalItem';
+import { AccessDenied } from '../../pages/AccessDenied';
+import { ModalItem } from '../../entities/ModalItem';
 
 export const AppRoutes: React.FC = () => {
   const urlParams = new URLSearchParams(window.location.search);

@@ -3,8 +3,7 @@ import { Layout } from '../components';
 import { Link } from 'react-router-dom';
 
 export const AccessDenied: React.FC = () => (
-  <Layout>
-    <h1>Доступ запрещен</h1>
+  <Layout title="Доступ запрещен">
     <p className="margin-top-32">Доступ к запрашиваемой Вами странице запрещен</p>
     <p className="margin-top-8">Вы можете:</p>
     <ul>
