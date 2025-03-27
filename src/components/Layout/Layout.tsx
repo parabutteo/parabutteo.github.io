@@ -21,7 +21,11 @@ export const Layout: React.FC<ILayout> = ({ children, title }: ILayout) => {
     <>
       <Header />
       <main className={clsx(theme === 'light' ? 'light' : 'dark')}>
-        {!!title && <h1 className="margin-bottom-32">{title}</h1>}
+        {!!title && (
+          <h1 className="margin-bottom-32">
+            <span>{title}</span>
+          </h1>
+        )}
         <div className="main-content">{children}</div>
       </main>
     </>
