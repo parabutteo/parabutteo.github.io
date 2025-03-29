@@ -22,7 +22,7 @@ export const BasketItem: React.FC<IBasketItem> = ({ title, price, image }) => (
     <div className="flex-column align-items-start padding-left-24 inner-12">
       <h3 className="margin-bottom-8">{title}</h3>
       <span className="margin-bottom-12 txt-bold">{price}.00&nbsp;₽</span>
-      <AddToBasket counter={1} isDisabled />
+      <AddToBasket counter={1} isDisabled increaseClick={null} decreaseClick={null} />
       <button className="icon-btn delete-btn">
         <i className="fa fa-trash" />
       </button>

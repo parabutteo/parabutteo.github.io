@@ -4,6 +4,7 @@ import { Logo } from '../Logo/Logo';
 import { ThemeSwitcher } from '../Button/ThemeSwitcher';
 import { LanguageSwitcher } from '../Button/LanguageSwitcher';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../store/hooks';
 
 /**
  * "Хедер" приложения
@@ -11,6 +12,9 @@ import { NavLink } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   const { t } = useTranslation();
+
+  const cartItems = useAppSelector((state) => state.cart.items);
+  const cartItemsCounter = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <header className="header">
@@ -32,6 +36,7 @@ export const Header: React.FC = () => {
             </li>
             <li>
               <NavLink to="/basket">{t('header.basket')}</NavLink>
+              <span className="cart-counter">{cartItemsCounter}</span>
             </li>
           </ul>
         </nav>
