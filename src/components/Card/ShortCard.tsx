@@ -32,7 +32,7 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
   const dispatch = useAppDispatch();
 
   const addItemToCartHandler = (): void => {
-    dispatch(addItemToCart(item.id));
+    dispatch(addItemToCart({ id: item.id, title: item.title, price: item.price }));
   };
 
   const removeItemFromCartHandler = (): void => {

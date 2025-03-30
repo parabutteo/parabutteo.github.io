@@ -4,6 +4,8 @@ interface CartState {
   items: {
     id: number;
     quantity: number;
+    price: number;
+    title: string;
   }[];
 }
 
@@ -15,20 +17,26 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItemToCart(state, action: PayloadAction<number>) {
-      const existingItem = state.items.find((item) => item.id === action.payload);
+    addItemToCart(state, action: PayloadAction<{ id: number; title: string; price: number }>) {
+      const existingItem = state.items.find((item) => item.id === action.payload.id);
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.items.push({ id: action.payload, quantity: 1 });
+        state.items.push({
+          id: action.payload.id,
+          title: action.payload.title,
+          quantity: 1,
+          price: action.payload.price,
+        });
       }
     },
     removeItemFromCart(state, action: PayloadAction<number>) {
       const existingItem = state.items.find((item) => item.id === action.payload);
       if (existingItem) {
         existingItem.quantity -= 1;
-      } else {
-        state.items.push({ id: action.payload, quantity: 0 });
+        if (existingItem.quantity <= 0) {
+          state.items = state.items.filter((item) => item.id !== action.payload);
+        }
       }
     },
     removeFromCart(state, action: PayloadAction<number>) {
