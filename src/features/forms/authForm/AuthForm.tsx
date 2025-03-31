@@ -39,6 +39,7 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     handleSubmit,
     reset,
     formState: { errors },
+    getValues,
   } = useForm<TAuthFormData>();
 
   const [authTypeInner, setAuthTypeInner] = React.useState<TAuth>(authType);
@@ -48,15 +49,20 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
 
-  // Хендлер для выдачи токина при авторизации/регистрации
+  // Хендлер для выдачи токена при авторизации/регистрации
+  // Если токен админа -- формируем админский токен, иначе случайный
   const tokenizeHandler = (): void => {
-    dispatch(setToken(randomNumberGenerator(1000, 9999).toString()));
+    if (getValues('login') === 'admin@admin.ru') {
+      dispatch(setToken('admin'));
+    } else {
+      dispatch(setToken(randomNumberGenerator(1000, 9999).toString()));
+    }
   };
 
   const onSubmit = (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
-    reset();
     tokenizeHandler();
+    reset();
     navigation('/');
   };
 

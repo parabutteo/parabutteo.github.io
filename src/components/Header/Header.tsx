@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Logo } from '../Logo/Logo';
 import { ThemeSwitcher } from '../Button/ThemeSwitcher';
 import { LanguageSwitcher } from '../Button/LanguageSwitcher';
-import { ExitButton } from '../Button/ExitButton';
+import { LoginButton } from '../Button/LoginButton';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 
@@ -16,6 +16,7 @@ export const Header: React.FC = () => {
 
   const token = useAppSelector((state) => state.auth.token);
   const isUserLoggedIn = token !== null;
+  const isAdminRole = token === 'admin';
 
   const cartItems = useAppSelector((state) => state.cart.items);
   const cartItemsCounter = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -27,14 +28,16 @@ export const Header: React.FC = () => {
         <nav className="nav">
           <ul>
             <li>
-              <NavLink to="/magic">Защищенный роут</NavLink>
+              <NavLink to="/magic">Всё подряд</NavLink>
             </li>
             <li>
               <NavLink to="/sdsadas">404</NavLink>
             </li>
-            <li>
-              <NavLink to="/admin">{t('header.admin-panel')}</NavLink>
-            </li>
+            {isAdminRole && (
+              <li>
+                <NavLink to="/admin">{t('header.admin-panel')}</NavLink>
+              </li>
+            )}
             {isUserLoggedIn && (
               <li>
                 <NavLink to="/profile">{t('header.profile')}</NavLink>
@@ -48,7 +51,7 @@ export const Header: React.FC = () => {
         </nav>
         <ThemeSwitcher />
         <LanguageSwitcher />
-        <ExitButton />
+        <LoginButton />
       </div>
     </header>
   );
