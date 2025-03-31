@@ -2,6 +2,10 @@ import { useForm } from 'react-hook-form';
 import React from 'react';
 import { Button } from '../../../components';
 import clsx from 'clsx';
+import { useAppDispatch } from '../../../store/hooks';
+import { setToken } from '../../../features/auth/authSlice';
+import { randomNumberGenerator } from '../../../features/createRandomProduct';
+import { useNavigate } from 'react-router-dom';
 
 // Тип для видов формы
 type TAuth = 'reg' | 'auth';
@@ -38,12 +42,22 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
   } = useForm<TAuthFormData>();
 
   const [authTypeInner, setAuthTypeInner] = React.useState<TAuth>(authType);
-
+  // Признак формы регистрации
   const isRegProcedure = authTypeInner === 'reg';
+
+  const navigation = useNavigate();
+  const dispatch = useAppDispatch();
+
+  // Хендлер для выдачи токина при авторизации/регистрации
+  const tokenizeHandler = (): void => {
+    dispatch(setToken(randomNumberGenerator(1000, 9999).toString()));
+  };
 
   const onSubmit = (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
     reset();
+    tokenizeHandler();
+    navigation('/');
   };
 
   // Эффект для обнуления формы при смене authType
@@ -90,6 +104,7 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
             type="password"
             id="pass"
             placeholder="Укажите пароль"
+            autoComplete="currentPassword"
           />
           {errors.pass && <p className="error">{errors.pass.message}</p>}
         </div>
