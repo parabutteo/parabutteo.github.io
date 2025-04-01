@@ -55,7 +55,11 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     if (getValues('login') === 'admin@admin.ru') {
       dispatch(setToken('admin'));
     } else {
-      dispatch(setToken(randomNumberGenerator(1000, 9999).toString()));
+      const tokenValue = randomNumberGenerator(1000, 9999);
+      localStorage.setItem('token', tokenValue.toString());
+      const tokenFromStorage = localStorage.getItem('token');
+
+      dispatch(setToken(tokenFromStorage));
     }
   };
 

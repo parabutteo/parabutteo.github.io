@@ -5,8 +5,16 @@ interface AuthState {
   isInitialized: boolean;
 }
 
+const loadTokenFromStorage = () => {
+  try {
+    return localStorage.getItem('token') || null;
+  } catch {
+    return null;
+  }
+};
+
 const initialState: AuthState = {
-  token: null,
+  token: loadTokenFromStorage(),
   isInitialized: false,
 };
 

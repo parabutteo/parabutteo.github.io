@@ -3,15 +3,25 @@ import { Route, Routes } from 'react-router-dom';
 import { Admin, Auth, Basket, Catalog, Magic, NotFoundPage, Profile } from '../../pages';
 import { AccessDenied } from '../../pages/AccessDenied';
 import { ModalItem } from '../../entities/ModalItem';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setInitialized } from '../../features/auth/authSlice';
 
 export const AppRoutes: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const token = useAppSelector((state) => state.auth.token);
+  const isInit = useAppSelector((state) => state.auth.isInitialized);
+
+  React.useEffect(() => {
+    dispatch(setInitialized());
+  }, [dispatch]);
+
   // Признак авторизованного пользователя
   const userIsAuth = token !== null;
   // Признак админской роли
   const isAdminRole = token === 'admin';
 
+  console.log(`Приложение ${isInit ? '' : 'не '}инициализированно`);
   console.log('Токен юзера: ' + token);
 
   return (
