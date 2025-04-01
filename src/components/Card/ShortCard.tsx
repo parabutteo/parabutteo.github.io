@@ -5,7 +5,7 @@ import { addItemToCart, removeItemFromCart } from '../../features/cart/cartSlice
 
 export interface IShortCardItem {
   /** Идентификатор */
-  id: number;
+  id: string;
   /** Заголовок */
   title: string;
   /** Описание */
@@ -14,6 +14,8 @@ export interface IShortCardItem {
   price: number;
   /** Главное изображение */
   image: string;
+  /** Категория */
+  category: string;
 }
 
 export interface IShortCard {
@@ -32,7 +34,7 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
   const dispatch = useAppDispatch();
 
   const addItemToCartHandler = (): void => {
-    dispatch(addItemToCart({ id: item.id, title: item.title, price: item.price }));
+    dispatch(addItemToCart({ id: item.id }));
   };
 
   const removeItemFromCartHandler = (): void => {

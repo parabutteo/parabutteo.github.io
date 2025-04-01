@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Layout } from '../components';
 import { ProfileForm } from '../features/forms';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { updateProfile } from 'src/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { updateProfile } from '../features/auth/authSlice';
 
 export type ProfileT = {
   id: string;

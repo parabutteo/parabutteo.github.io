@@ -1,8 +1,6 @@
 import React from 'react';
 import { BasketItem, Layout } from '../components';
 import { useAppSelector } from '../store/hooks';
-import createRandomProductImage from '../features/createRandomProductImage';
-import { randomNumberGenerator } from '../features/createRandomProduct';
 import { Link } from 'react-router-dom';
 
 export const Basket: React.FC = () => {
@@ -19,20 +17,9 @@ export const Basket: React.FC = () => {
         </>
       )}
 
-      {cartItems.map((item) => {
-        const randomNum = randomNumberGenerator(1, 4);
-
-        return (
-          <BasketItem
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            price={item.price * item.quantity}
-            counter={item.quantity}
-            image={createRandomProductImage(randomNum)}
-          />
-        );
-      })}
+      {cartItems.map((item) => (
+        <BasketItem key={item.id} id={item.id} counter={item.quantity} />
+      ))}
     </Layout>
   );
 };

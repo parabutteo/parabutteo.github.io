@@ -1,17 +1,12 @@
 import React from 'react';
 import { AddToBasket } from '../Button/AddToBasket';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addItemToCart, removeFromCart, removeItemFromCart } from '../../features/cart/cartSlice';
+import { selectProductImage, selectProductPrice, selectProductTitle } from '../../features/products/selectors';
 
 export interface IBasketItem {
   /** Идентификатор */
-  id: number;
-  /** Заголовок */
-  title: string;
-  /** Цена */
-  price: number;
-  /** Изображение */
-  image: string;
+  id: string;
   /** Количество */
   counter: number;
 }
@@ -22,18 +17,22 @@ export interface IBasketItem {
  * В компоненте присутсвтует паттерн "Render prop"
  */
 
-export const BasketItem: React.FC<IBasketItem> = ({ id, title, price, image, counter }) => {
+export const BasketItem: React.FC<IBasketItem> = ({ id, counter }) => {
   const dispatch = useAppDispatch();
   const removeFromCartHandler = (): void => {
     dispatch(removeFromCart(id));
   };
   const addItemToCartHandler = (): void => {
-    dispatch(addItemToCart({ id: id, title: title, price: price }));
+    dispatch(addItemToCart({ id: id }));
   };
 
   const removeItemFromCartHandler = (): void => {
     dispatch(removeItemFromCart(id));
   };
+
+  const title = useAppSelector((state) => selectProductTitle(state, id));
+  const price = +useAppSelector((state) => selectProductPrice(state, id)) * counter;
+  const image = useAppSelector((state) => selectProductImage(state, id));
 
   return (
     <article className="card basket-card flex-row margin-bottom-24">
