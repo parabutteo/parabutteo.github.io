@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import clsx from 'clsx';
+import { clearCart } from '../../features/cart/cartSlice';
 
 /**
  * Кнопка "выход из ЛК"
@@ -18,6 +19,8 @@ export const LoginButton: React.FC = () => {
   const loginHandler = (): void => {
     if (isUserLoggedIn) {
       dispatch(logout());
+      dispatch(clearCart());
+      localStorage.removeItem('cart');
     } else navigate('/auth');
   };
 
