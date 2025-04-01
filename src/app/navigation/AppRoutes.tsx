@@ -4,16 +4,16 @@ import { Admin, Auth, Basket, Catalog, Magic, NotFoundPage, Profile } from '../.
 import { AccessDenied } from '../../pages/AccessDenied';
 import { ModalItem } from '../../entities/ModalItem';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setInitialized } from '../../features/auth/authSlice';
+import { initializeApp } from '../../features/app/appSlice';
 
 export const AppRoutes: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const token = useAppSelector((state) => state.auth.token);
-  const isInit = useAppSelector((state) => state.auth.isInitialized);
+  const isInit = useAppSelector((state) => state.app.initialized);
 
   React.useEffect(() => {
-    dispatch(setInitialized());
+    dispatch(initializeApp());
   }, [dispatch]);
 
   // Признак авторизованного пользователя

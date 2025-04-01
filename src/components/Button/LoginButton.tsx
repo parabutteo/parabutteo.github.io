@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './Button';
 import { useNavigate } from 'react-router-dom';
-import { setToken } from '../../features/auth/authSlice';
+import { logout } from '../../features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import clsx from 'clsx';
 
@@ -17,7 +17,7 @@ export const LoginButton: React.FC = () => {
 
   const loginHandler = (): void => {
     if (isUserLoggedIn) {
-      dispatch(setToken(null));
+      dispatch(logout());
     } else navigate('/auth');
   };
 

@@ -2,20 +2,22 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   token: string | null;
-  isInitialized: boolean;
+  profile: {
+    id: string;
+    name: string;
+    email: string;
+    aboutMe: string;
+  } | null;
 }
 
-const loadTokenFromStorage = () => {
-  try {
-    return localStorage.getItem('token') || null;
-  } catch {
-    return null;
-  }
+const loadProfileFromStorage = () => {
+  const storedProfile = localStorage.getItem('profile');
+  return storedProfile ? JSON.parse(storedProfile) : null;
 };
 
 const initialState: AuthState = {
-  token: loadTokenFromStorage(),
-  isInitialized: false,
+  token: localStorage.getItem('token') || null,
+  profile: loadProfileFromStorage(),
 };
 
 const authSlice = createSlice({
@@ -24,12 +26,27 @@ const authSlice = createSlice({
   reducers: {
     setToken(state, action: PayloadAction<string>) {
       state.token = action.payload;
+      localStorage.setItem('token', action.payload);
+      const profile = {
+        id: 'user1',
+        name: 'Фродо Бэггинс',
+        email: 'mail@mail.ru',
+        aboutMe: 'Вот что я скажу о себе:',
+      };
+      state.profile = profile;
+      localStorage.setItem('profile', JSON.stringify(profile));
     },
-    setInitialized(state) {
-      state.isInitialized = true;
+    updateProfile(state, action: PayloadAction<AuthState['profile']>) {
+      state.profile = action.payload;
+      localStorage.setItem('profile', JSON.stringify(action.payload));
+    },
+    logout: (state) => {
+      state.token = null;
+      state.profile = null;
+      localStorage.removeItem('token');
     },
   },
 });
 
-export const { setToken, setInitialized } = authSlice.actions;
+export const { setToken, updateProfile, logout } = authSlice.actions;
 export default authSlice.reducer;

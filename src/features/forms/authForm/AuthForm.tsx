@@ -56,10 +56,7 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
       dispatch(setToken('admin'));
     } else {
       const tokenValue = randomNumberGenerator(1000, 9999);
-      localStorage.setItem('token', tokenValue.toString());
-      const tokenFromStorage = localStorage.getItem('token');
-
-      dispatch(setToken(tokenFromStorage));
+      dispatch(setToken(tokenValue.toString()));
     }
   };
 
