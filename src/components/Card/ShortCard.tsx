@@ -1,9 +1,11 @@
 import React from 'react';
 import { AddToBasket } from '../Button/AddToBasket';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { addItemToCart, removeItemFromCart } from '../../features/cart/cartSlice';
 
 export interface IShortCardItem {
   /** Идентификатор */
-  id: number;
+  id: string;
   /** Заголовок */
   title: string;
   /** Описание */
@@ -12,6 +14,8 @@ export interface IShortCardItem {
   price: number;
   /** Главное изображение */
   image: string;
+  /** Категория */
+  category: string;
 }
 
 export interface IShortCard {
@@ -27,11 +31,28 @@ export interface IShortCard {
 export const ShortCard: React.FC<IShortCard> = ({ item }) => {
   const { title, details, price, image } = item;
 
+  const dispatch = useAppDispatch();
+
+  const addItemToCartHandler = (): void => {
+    dispatch(addItemToCart({ id: item.id }));
+  };
+
+  const removeItemFromCartHandler = (): void => {
+    dispatch(removeItemFromCart(item.id));
+  };
+
+  const cartItems = useAppSelector((state) => state.cart.items);
+  const totalQuantity = cartItems.reduce((acc, items) => (items.id === item.id ? acc + items.quantity : acc), 0);
+
   return (
     <article className="card short-card">
       <img width="100%" src={image} alt="" />
       <div className="flex-column inner-12">
-        <AddToBasket counter={0} isDisabled />
+        <AddToBasket
+          counter={totalQuantity}
+          increaseClick={addItemToCartHandler}
+          decreaseClick={removeItemFromCartHandler}
+        />
         <h3 className="margin-top-12 margin-bottom-8">{title}</h3>
         <p className="margin-bottom-12">{details.length > 50 ? `${details.slice(0, 50)}...` : details}</p>
         <span className="margin-bottom-8 txt-bold">{price}.00&nbsp;₽</span>

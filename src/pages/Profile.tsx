@@ -1,22 +1,38 @@
 import React from 'react';
 import { Button, Layout } from '../components';
 import { ProfileForm } from '../features/forms';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { updateProfile } from '../features/auth/authSlice';
 
 export type ProfileT = {
+  id: string;
   name: string;
+  email: string;
   aboutMe: string;
 };
 
 export const Profile: React.FC = () => {
+  const profileInfo = useAppSelector((state) => state.auth.profile);
+
   const [isEditMode, setIsEditMode] = React.useState<boolean>(false);
   const [form, setForm] = React.useState<ProfileT>({
-    name: 'Фродо Бэггинс',
-    aboutMe:
-      'Я Фродо Бэггинс, хоббит из Шира. Я стал одной из легенд в истории Средиземья, взяв на себя миссию уничтожить Единое Кольцо Саурона.',
+    id: profileInfo.id,
+    name: profileInfo.name,
+    email: profileInfo.email,
+    aboutMe: profileInfo.aboutMe,
   });
+
+  const dispatch = useAppDispatch();
 
   const sendHandler = (): void => {
     setIsEditMode(false);
+
+    const newProfile = {
+      ...form,
+      aboutMe: form.aboutMe,
+      name: form.name,
+    };
+    dispatch(updateProfile(newProfile));
   };
 
   return (

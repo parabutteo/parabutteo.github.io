@@ -34,7 +34,7 @@ export const FullCard: React.FC<IFullCard> = ({ title, category, price, details,
       <span className="label margin-bottom-12">{category}</span>
       <p className="margin-bottom-16">{details}</p>
       <span className="margin-bottom-24 txt-bold txt-large">{price}.00&nbsp;₽</span>
-      <AddToBasket counter={0} isDisabled />
+      <AddToBasket counter={0} isDisabled increaseClick={null} decreaseClick={null} />
     </div>
   </article>
 );

@@ -7,6 +7,10 @@ interface IAddToBasket {
   counter: number;
   /** Признак заблокированности кнопки */
   isDisabled?: boolean;
+  /** Хендлер клика при добавлении */
+  increaseClick: () => void;
+  /** Хендлер клика при удалении */
+  decreaseClick: () => void;
 }
 
 /**
@@ -21,15 +25,15 @@ interface IAddToBasket {
  * Компонент подходит под паттерн "High order component"
  */
 
-export const AddToBasket: React.FC<IAddToBasket> = ({ counter, isDisabled }) => {
+export const AddToBasket: React.FC<IAddToBasket> = ({ counter, isDisabled, increaseClick, decreaseClick }) => {
   if (counter > 0) {
     return (
       <div className={clsx('counter', 'flex-row', 'align-items-center', isDisabled && 'disabled')}>
-        <Button>
+        <Button onClick={decreaseClick}>
           <i className="fa fa-minus" />
         </Button>
-        <input type="number" defaultValue={counter} />
-        <Button>
+        <input type="number" value={counter} onChange={() => null} readOnly />
+        <Button onClick={increaseClick}>
           <i className="fa fa-plus" />
         </Button>
       </div>
@@ -37,7 +41,7 @@ export const AddToBasket: React.FC<IAddToBasket> = ({ counter, isDisabled }) => 
   }
 
   return (
-    <Button className="primary" disabled={isDisabled}>
+    <Button className="primary" disabled={isDisabled} onClick={increaseClick}>
       Добавить в корзину
       <i className="margin-left-12 fa fa-shopping-cart" />
     </Button>

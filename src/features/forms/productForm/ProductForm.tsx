@@ -2,16 +2,19 @@ import { useForm } from 'react-hook-form';
 import React from 'react';
 import { Button } from '../../../components';
 import clsx from 'clsx';
+import { useAppDispatch } from '../../../store/hooks';
+import { addProduct, editProduct, removeProduct } from '../../../features/products/productsSlice';
 
 // Тип для видов формы
 type TProcedure = 'add' | 'edit';
 
 type TAuthFormData = {
+  id: string;
   title: string;
   category: string;
-  imgPath: string[];
-  describe: string;
+  image: string;
   price: number;
+  details: string;
 };
 
 interface IProductForm {
@@ -34,8 +37,11 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<TAuthFormData>();
+
+  const dispatch = useAppDispatch();
 
   // Признак формы с типом "добавление товара"
   const isAddProcedure = procedureType === 'add';
@@ -45,7 +51,16 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
 
   const onSubmit = (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isAddProcedure ? 'добавления товара' : 'редактирования товара'}: `, data);
+    isAddProcedure ? dispatch(addProduct(data)) : dispatch(editProduct(data));
     reset();
+  };
+
+  const deleteHandler = (id: string): void => {
+    if (watch('id') !== null && watch('id') !== '') {
+      console.log('Удалён товар с ID ' + watch('id'));
+      dispatch(removeProduct(id));
+      reset();
+    }
   };
 
   // Эффект для обнуления формы при смене procedureType
@@ -55,6 +70,17 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
 
   return (
     <form className="margin-top-24 form" onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="login">ID</label>
+      <input
+        {...register('id', {
+          value: null,
+          required: true,
+        })}
+        className={clsx(errors.id && 'error-field', 'grid-content')}
+        type="text"
+        id="id"
+        placeholder="Введите идентификатор"
+      />
       <label htmlFor="login">Название</label>
       <input
         {...register('title', {
@@ -84,8 +110,8 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
 
       <label htmlFor="imgPath">Путь к изображению</label>
       <textarea
-        {...register('imgPath', {
-          value: !isAddProcedure ? [defaultFieldValue] : undefined,
+        {...register('image', {
+          value: !isAddProcedure ? defaultFieldValue : undefined,
           required: true,
         })}
         className={clsx(errors.title && 'error-field', 'grid-content')}
@@ -95,11 +121,11 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
 
       <label htmlFor="login">Описание</label>
       <textarea
-        {...register('describe', {
+        {...register('details', {
           value: !isAddProcedure ? defaultFieldValue : undefined,
           required: true,
         })}
-        className={clsx(errors.describe && 'error-field', 'grid-content')}
+        className={clsx(errors.details && 'error-field', 'grid-content')}
         id="describe"
         placeholder="Введите описание"
       />
@@ -119,6 +145,11 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType }) => {
       <Button className="small margin-top-8" type="submit">
         {isAddProcedure ? 'Добавить' : 'Сохранить'}
       </Button>
+      {!isAddProcedure && (
+        <Button className="small margin-top-8" onClick={() => deleteHandler(watch('id'))}>
+          Удалить
+        </Button>
+      )}
     </form>
   );
 };

@@ -2,10 +2,14 @@ import React from 'react';
 import { Button, Layout } from '../components';
 import { Outlet } from 'react-router-dom';
 import { ModalItem } from '../entities/ModalItem';
+import { useAppSelector } from '../store/hooks';
 
 export const Admin: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);
   const [modalType, setModalType] = React.useState<'edit' | 'add'>('add');
+  const products = useAppSelector((state) => state.products);
+
+  console.log(products);
 
   return (
     <Layout title="Администраторская панель">
