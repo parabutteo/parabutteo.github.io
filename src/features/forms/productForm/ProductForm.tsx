@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import React from 'react';
 import { Button } from '../../../components';
 import clsx from 'clsx';
-import { useAppDispatch } from 'src/store/hooks';
-import { addProduct, editProduct, removeProduct } from 'src/features/products/productsSlice';
+import { useAppDispatch } from '../../../store/hooks';
+import { addProduct, editProduct, removeProduct } from '../../../features/products/productsSlice';
 
 // Тип для видов формы
 type TProcedure = 'add' | 'edit';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Layout } from '../components';
 import { Outlet } from 'react-router-dom';
 import { ModalItem } from '../entities/ModalItem';
-import { useAppSelector } from 'src/store/hooks';
+import { useAppSelector } from '../store/hooks';
 
 export const Admin: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);

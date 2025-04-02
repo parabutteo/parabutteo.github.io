@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import createRandomProductImage from '../createRandomProductImage';
 
 interface Product {
   id: string;
@@ -9,16 +10,13 @@ interface Product {
   details: string;
 }
 
-const productImage = (article: number) =>
-  `https://github.com/parabutteo/cdn.parabutteo.github.io/blob/master/clothes_shop/category_1/${article}_1.jpg?raw=true`;
-
 const initialState: Product[] = [
   {
     id: '1',
     title: 'Рубашка',
-    details: 'Голубая базовая рубашка',
-    price: 1000,
-    image: productImage(3),
+    details: 'Рубашка с принтом',
+    price: 1200,
+    image: createRandomProductImage(3),
     category: 'Футболки, рубашки',
   },
   {
@@ -26,23 +24,23 @@ const initialState: Product[] = [
     title: 'Кардиган',
     details: 'Вязаный кардиган',
     price: 2800,
-    image: productImage(1),
+    image: createRandomProductImage(1),
     category: 'Футболки, рубашки',
   },
   {
     id: '3',
-    title: 'Рубашка',
-    details: 'Клетчатая рубашка',
+    title: 'Джемпер',
+    details: 'Крупная вязка',
     price: 1700,
-    image: productImage(2),
+    image: createRandomProductImage(2),
     category: 'Футболки, рубашки',
   },
   {
     id: '4',
     title: 'Жилетка',
-    details: 'Уютная жилетка',
+    details: 'Базовая жилетка',
     price: 2100,
-    image: productImage(4),
+    image: createRandomProductImage(4),
     category: 'Футболки, рубашки',
   },
 ];
