@@ -2,6 +2,10 @@ import { useForm } from 'react-hook-form';
 import React from 'react';
 import { Button } from '../../../components';
 import clsx from 'clsx';
+import { useAppDispatch } from '../../../store/hooks';
+import { setToken } from '../../../features/auth/authSlice';
+import { randomNumberGenerator } from '../../../features/createRandomProduct';
+import { useNavigate } from 'react-router-dom';
 
 // Тип для видов формы
 type TAuth = 'reg' | 'auth';
@@ -35,15 +39,32 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     handleSubmit,
     reset,
     formState: { errors },
+    getValues,
   } = useForm<TAuthFormData>();
 
   const [authTypeInner, setAuthTypeInner] = React.useState<TAuth>(authType);
-
+  // Признак формы регистрации
   const isRegProcedure = authTypeInner === 'reg';
+
+  const navigation = useNavigate();
+  const dispatch = useAppDispatch();
+
+  // Хендлер для выдачи токена при авторизации/регистрации
+  // Если токен админа -- формируем админский токен, иначе случайный
+  const tokenizeHandler = (): void => {
+    if (getValues('login') === 'admin@admin.ru') {
+      dispatch(setToken('admin'));
+    } else {
+      const tokenValue = randomNumberGenerator(1000, 9999);
+      dispatch(setToken(tokenValue.toString()));
+    }
+  };
 
   const onSubmit = (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
+    tokenizeHandler();
     reset();
+    navigation('/');
   };
 
   // Эффект для обнуления формы при смене authType
@@ -90,6 +111,7 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
             type="password"
             id="pass"
             placeholder="Укажите пароль"
+            autoComplete="currentPassword"
           />
           {errors.pass && <p className="error">{errors.pass.message}</p>}
         </div>

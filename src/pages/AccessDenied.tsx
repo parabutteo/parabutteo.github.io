@@ -10,7 +10,9 @@ export const AccessDenied: React.FC = () => (
       <li>
         вернуться на <Link to="/">главную</Link>
       </li>
-      <li>&laquo;авторизоваться&raquo; добавив в&nbsp;урл дописку ?user=auth</li>
+      <li>
+        пройти процедуру <Link to="/auth">авторизации</Link>
+      </li>
     </ul>
   </Layout>
 );
