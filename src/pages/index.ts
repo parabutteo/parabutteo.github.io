@@ -4,6 +4,7 @@ export { Catalog } from './Catalog';
 export { Admin } from './Admin';
 
 export { Auth } from './Auth';
+export { Reg } from './Reg';
 
 export { NotFoundPage } from './NotFoundPage';
 
