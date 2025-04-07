@@ -1,11 +1,13 @@
-import { useForm } from 'react-hook-form';
 import React from 'react';
-import { Button } from '../../../components';
+import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
+import { Button } from '../../../components';
 import { useAppDispatch } from '../../../store/hooks';
 import { setToken } from '../../../features/auth/authSlice';
 import { randomNumberGenerator } from '../../../features/createRandomProduct';
 import { useNavigate } from 'react-router-dom';
+import { singup } from '../../../shared/api/auth/singup';
+import { backendErrorMessages } from '../../../shared/constants';
 
 // Тип для видов формы
 type TAuth = 'reg' | 'auth';
@@ -42,9 +44,8 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     getValues,
   } = useForm<TAuthFormData>();
 
-  const [authTypeInner, setAuthTypeInner] = React.useState<TAuth>(authType);
   // Признак формы регистрации
-  const isRegProcedure = authTypeInner === 'reg';
+  const isRegProcedure = authType === 'reg';
 
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
@@ -60,20 +61,34 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     }
   };
 
-  const onSubmit = (data: TAuthFormData) => {
-    console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
-    tokenizeHandler();
-    reset();
-    navigation('/');
-  };
+  // Стейт для заполнения ошибки по логину, приходящей с сервера
+  const [errorLogin, setErrorLogin] = React.useState<string | null>(null);
 
-  // Эффект для обнуления формы при смене authType
-  React.useEffect(() => {
-    reset();
-    if (authType === 'auth') {
-      setAuthTypeInner('auth');
-    } else setAuthTypeInner('reg');
-  }, [authType, reset]);
+  const onSubmit = async (data: TAuthFormData) => {
+    console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
+
+    if (isRegProcedure) {
+      try {
+        const response = await singup(data.login, data.pass);
+        console.log('Результат запроса:', response);
+
+        if (response?.errors) {
+          const code = response.errors[0].extensions.code;
+          setErrorLogin(backendErrorMessages[code] || 'Неизвестная ошибка');
+        } else {
+          dispatch(setToken(response?.token));
+          reset();
+          navigation('/');
+        }
+      } catch (error) {
+        setErrorLogin('Ошибка соединения с сервером');
+      }
+    } else {
+      tokenizeHandler();
+      reset();
+      navigation('/');
+    }
+  };
 
   return (
     <div className="flex-column authorize-container">
@@ -84,17 +99,23 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
           <input
             {...register('login', {
               required: 'Значение поля "логин" пустое',
-              pattern: {
+              pattern: !isRegProcedure && {
                 value: /\S+@\S+\.\S+/,
                 message: 'Введите корректный адрес электронной почты',
               },
             })}
-            className={clsx(errors.login && 'error-field')}
+            className={clsx((errors.login || errorLogin) && 'error-field')}
             type="text"
             id="login"
             placeholder="Укажите логин"
+            onChange={() => {
+              if (errorLogin) {
+                setErrorLogin(null);
+              }
+            }}
           />
           {errors.login && <p className="error">{errors.login.message}</p>}
+          {errorLogin && !errors.login && <p className="error">{errorLogin}</p>}
         </div>
 
         <label htmlFor="pass">Пароль</label>
@@ -107,7 +128,7 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
                 message: 'Пароль должен содержать минимум 8 символов',
               },
             })}
-            className={clsx(errors.login && 'error-field')}
+            className={clsx(errors.pass && 'error-field')}
             type="password"
             id="pass"
             placeholder="Укажите пароль"
@@ -123,9 +144,9 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
           {!isRegProcedure && (
             <Button
               className="margin-left-12 small"
-              type="submit"
+              type="button"
               onClick={() => {
-                setAuthTypeInner('reg');
+                navigation('/reg');
                 reset();
               }}
             >
@@ -135,9 +156,9 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
           {isRegProcedure && (
             <Button
               className="margin-left-12 small"
-              type="submit"
+              type="button"
               onClick={() => {
-                setAuthTypeInner('auth');
+                navigation('/auth');
                 reset();
               }}
             >
