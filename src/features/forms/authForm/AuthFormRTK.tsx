@@ -23,7 +23,7 @@ interface IAuthForm {
 }
 
 /**
- * Компонент формы аутентификации
+ * Компонент формы аутентификации, работающей на RTK Query
  *
  * Состоит из двух составляющих: регистрация и авторизация
  *
@@ -35,7 +35,7 @@ interface IAuthForm {
  * @returns React.FC
  */
 
-export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
+export const AuthFormRTK: React.FC<IAuthForm> = ({ authType }) => {
   const {
     register,
     handleSubmit,
@@ -169,6 +169,10 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
           )}
         </div>
       </form>
+      <div className="margin-top-12 flex-row align-items-center justify-content-end">
+        <div className="txt-bold margin-right-4">powered by</div>
+        <img src="https://redux-toolkit.js.org/img/redux.svg" width={40} height={40} />
+      </div>
     </div>
   );
 };
