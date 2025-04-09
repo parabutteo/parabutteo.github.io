@@ -50,7 +50,7 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
 
-  // Хендлер для выдачи токена при авторизации/регистрации
+  // Хендлер для выдачи токена при авторизации
   // Если токен админа -- формируем админский токен, иначе случайный
   const tokenizeHandler = (): void => {
     if (getValues('login') === 'admin@admin.ru') {
@@ -67,11 +67,9 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
   const onSubmit = async (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
 
-    if (isRegProcedure) {
-      try {
+    try {
+      if (isRegProcedure) {
         const response = await singup(data.login, data.pass);
-        console.log('Результат запроса:', response);
-
         if (response?.errors) {
           const code = response.errors[0].extensions.code;
           setErrorLogin(backendErrorMessages[code] || 'Неизвестная ошибка');
@@ -82,13 +80,13 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
         } else {
           setErrorLogin('Ошибка: токен не получен от сервера');
         }
-      } catch (error) {
-        setErrorLogin('Ошибка соединения с сервером');
+      } else {
+        tokenizeHandler();
+        reset();
+        navigation('/');
       }
-    } else {
-      tokenizeHandler();
-      reset();
-      navigation('/');
+    } catch (error) {
+      setErrorLogin('Ошибка соединения с сервером');
     }
   };
 

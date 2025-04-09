@@ -1,6 +1,6 @@
 import { REST_API_SERVER_URL, COMMAND_ID } from '../../constants';
 
-export interface ISingUpResponse {
+interface ISingUpResponse {
   errors?: Array<{ extensions: { code: string } }>;
   token?: string;
 }
