@@ -93,7 +93,6 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
       register={register}
       errorLogin={errorLogin}
       reset={reset}
-      setErrorLogin={setErrorLogin}
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
       navigation={navigation}

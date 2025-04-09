@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { Button } from '../../../components';
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister, UseFormReset } from 'react-hook-form';
@@ -10,7 +10,6 @@ interface IAuthMarkUp {
   register: UseFormRegister<TAuthFormData>;
   errorLogin: string;
   reset: UseFormReset<TAuthFormData>;
-  setErrorLogin: Dispatch<SetStateAction<string>>;
   handleSubmit: UseFormHandleSubmit<TAuthFormData, undefined>;
   onSubmit: (data: TAuthFormData) => Promise<void>;
   navigation: NavigateFunction;
@@ -23,7 +22,6 @@ export const AuthMarkUp: React.FC<IAuthMarkUp> = ({
   register,
   errorLogin,
   reset,
-  setErrorLogin,
   handleSubmit,
   onSubmit,
   navigation,
@@ -47,14 +45,9 @@ export const AuthMarkUp: React.FC<IAuthMarkUp> = ({
           type="text"
           id="login"
           placeholder="Укажите логин"
-          onChange={() => {
-            if (errorLogin) {
-              setErrorLogin(null);
-            }
-          }}
         />
-        {errors.login && <p className="error">{errors.login.message}</p>}
-        {errorLogin && !errors.login && <p className="error">{errorLogin}</p>}
+        {errors.login && !errorLogin && <p className="error">{errors.login.message}</p>}
+        {errorLogin && <p className="error">{errorLogin}</p>}
       </div>
 
       <label htmlFor="pass">Пароль</label>
