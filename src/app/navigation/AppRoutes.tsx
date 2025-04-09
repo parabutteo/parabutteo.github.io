@@ -28,7 +28,7 @@ export const AppRoutes: React.FC = () => {
     <Routes>
       <Route path="/auth" element={<Auth />} />
       <Route path="/reg" element={<Reg />} />
-      <Route path="/rtkq-reg" element={<RegRTK />} />
+      <Route path="/rtk-reg" element={<RegRTK />} />
       <Route path="/" element={<Catalog />} />
       <Route path="/profile" element={userIsAuth ? <Profile /> : <AccessDenied />} />
       <Route path="/basket" element={<Basket />} />

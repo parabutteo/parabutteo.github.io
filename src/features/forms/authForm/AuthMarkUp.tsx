@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import clsx from 'clsx';
 import { Button } from '../../../components';
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister, UseFormReset } from 'react-hook-form';
+import { NavigateFunction } from 'react-router-dom';
+import { TAuthFormData } from './types';
 
 interface IAuthMarkUp {
-  register: any;
-  isRegProcedure: any;
-  errors: any;
-  errorLogin: any;
-  setErrorLogin: any;
-  reset: any;
-  handleSubmit: any;
-  onSubmit: any;
-  navigation: any;
+  errors: FieldErrors<TAuthFormData>;
+  register: UseFormRegister<TAuthFormData>;
+  errorLogin: string;
+  reset: UseFormReset<TAuthFormData>;
+  setErrorLogin: Dispatch<SetStateAction<string>>;
+  handleSubmit: UseFormHandleSubmit<TAuthFormData, undefined>;
+  onSubmit: (data: TAuthFormData) => Promise<void>;
+  navigation: NavigateFunction;
+  isRegProcedure: boolean;
 }
 
 export const AuthMarkUp: React.FC<IAuthMarkUp> = ({
   errors,
   register,
-  isRegProcedure,
   errorLogin,
   reset,
   setErrorLogin,
   handleSubmit,
   onSubmit,
   navigation,
+  isRegProcedure,
 }) => (
   <div className="flex-column authorize-container">
     <h3 className="margin-bottom-8">{isRegProcedure ? 'Регистрация' : 'Авторизация'}</h3>
