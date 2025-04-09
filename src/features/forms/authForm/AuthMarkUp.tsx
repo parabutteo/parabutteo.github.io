@@ -15,6 +15,7 @@ interface IAuthMarkUp {
   onSubmit: (data: TAuthFormData) => Promise<void>;
   navigation: NavigateFunction;
   isRegProcedure: boolean;
+  query?: 'rtk';
 }
 
 export const AuthMarkUp: React.FC<IAuthMarkUp> = ({
@@ -27,6 +28,7 @@ export const AuthMarkUp: React.FC<IAuthMarkUp> = ({
   onSubmit,
   navigation,
   isRegProcedure,
+  query,
 }) => (
   <div className="flex-column authorize-container">
     <h3 className="margin-bottom-8">{isRegProcedure ? 'Регистрация' : 'Авторизация'}</h3>
@@ -104,5 +106,11 @@ export const AuthMarkUp: React.FC<IAuthMarkUp> = ({
         )}
       </div>
     </form>
+    {query === 'rtk' && (
+      <div className="margin-top-12 flex-row align-items-center justify-content-end">
+        <div className="txt-bold margin-right-4">powered by</div>
+        <img src="https://redux-toolkit.js.org/img/redux.svg" width={40} height={40} />
+      </div>
+    )}
   </div>
 );

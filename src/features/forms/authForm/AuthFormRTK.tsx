@@ -126,6 +126,7 @@ export const AuthFormRTK: React.FC<IAuthForm> = ({ authType }) => {
       onSubmit={onSubmit}
       navigation={navigation}
       isRegProcedure={isRegProcedure}
+      query="rtk"
     />
   );
 };

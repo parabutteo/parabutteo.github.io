@@ -65,6 +65,8 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     try {
       if (isRegProcedure) {
         const response = await singup(data.login, data.pass);
+        console.log('Результат запроса:', response);
+
         if (response?.errors) {
           const code = response.errors[0].extensions.code;
           setErrorLogin(backendErrorMessages[code] || 'Неизвестная ошибка');
