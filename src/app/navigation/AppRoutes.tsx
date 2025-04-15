@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Admin, Auth, Basket, Catalog, Magic, NotFoundPage, Profile } from '../../pages';
+import { Admin, Auth, Basket, Catalog, Magic, NotFoundPage, Profile, Reg, RegRTK } from '../../pages';
 import { AccessDenied } from '../../pages/AccessDenied';
 import { ModalItem } from '../../entities/ModalItem';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -27,6 +27,8 @@ export const AppRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/auth" element={<Auth />} />
+      <Route path="/reg" element={<Reg />} />
+      <Route path="/rtk-reg" element={<RegRTK />} />
       <Route path="/" element={<Catalog />} />
       <Route path="/profile" element={userIsAuth ? <Profile /> : <AccessDenied />} />
       <Route path="/basket" element={<Basket />} />

@@ -4,8 +4,10 @@ import { useAppDispatch } from '../../../store/hooks';
 import { setToken } from '../../../features/auth/authSlice';
 import { randomNumberGenerator } from '../../../features/createRandomProduct';
 import { useNavigate } from 'react-router-dom';
-import { singup } from '../../../shared/api/auth/singup';
 import { backendErrorMessages } from '../../../shared/constants';
+import { useSingUpMutation } from '../../../shared/api/auth/rtk_signup';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 import { AuthMarkUp } from './AuthMarkUp';
 import { TAuthFormData } from './types';
 
@@ -18,7 +20,7 @@ interface IAuthForm {
 }
 
 /**
- * Компонент формы аутентификации
+ * Компонент формы аутентификации, работающей на RTK Query
  *
  * Состоит из двух составляющих: регистрация и авторизация
  *
@@ -30,7 +32,7 @@ interface IAuthForm {
  * @returns React.FC
  */
 
-export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
+export const AuthFormRTK: React.FC<IAuthForm> = ({ authType }) => {
   const {
     register,
     handleSubmit,
@@ -44,6 +46,8 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
 
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
+
+  const [singUp] = useSingUpMutation();
 
   // Хендлер для выдачи токена при авторизации
   // Если токен админа -- формируем админский токен, иначе случайный
@@ -59,31 +63,55 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
   // Стейт для заполнения ошибки по логину, приходящей с сервера
   const [errorLogin, setErrorLogin] = React.useState<string | null>(null);
 
+  // Тип-гварды для обработки ошибок
+  function isFetchBaseQueryError(error: FetchBaseQueryError | SerializedError): error is FetchBaseQueryError {
+    return 'status' in error && 'data' in error;
+  }
+  function isDataObject(data: unknown): data is { errors: { extensions: { code: string } }[] } {
+    return typeof data === 'object' && data !== null && 'errors' in data;
+  }
+
+  // Хендлер для вывода ошибок с бека
+  const handleServerErrors = (error: FetchBaseQueryError | SerializedError) => {
+    if (isFetchBaseQueryError(error)) {
+      const errorData = error.data;
+      if (isDataObject(errorData)) {
+        const errors = errorData.errors;
+        if (errors && errors.length > 0) {
+          const error = errors[0];
+          if ('extensions' in error && 'code' in error.extensions) {
+            const code = error.extensions.code;
+            setErrorLogin(backendErrorMessages[code] || 'Неизвестная ошибка');
+          }
+        }
+      }
+    }
+  };
+
   const onSubmit = async (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
 
-    try {
-      if (isRegProcedure) {
-        const response = await singup(data.login, data.pass);
+    if (isRegProcedure) {
+      try {
+        const response = await singUp({ email: data.login, password: data.pass });
         console.log('Результат запроса:', response);
 
-        if (response?.errors) {
-          const code = response.errors[0].extensions.code;
-          setErrorLogin(backendErrorMessages[code] || 'Неизвестная ошибка');
-        } else if (response?.token) {
-          dispatch(setToken(response.token));
+        if (response?.error) {
+          handleServerErrors(response.error);
+        } else if (response?.data.token) {
+          dispatch(setToken(response.data.token));
           reset();
           navigation('/');
         } else {
           setErrorLogin('Ошибка: токен не получен от сервера');
         }
-      } else {
-        tokenizeHandler();
-        reset();
-        navigation('/');
+      } catch (error) {
+        setErrorLogin('Ошибка соединения с сервером');
       }
-    } catch (error) {
-      setErrorLogin('Ошибка соединения с сервером');
+    } else {
+      tokenizeHandler();
+      reset();
+      navigation('/');
     }
   };
 
@@ -97,6 +125,7 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
       onSubmit={onSubmit}
       navigation={navigation}
       isRegProcedure={isRegProcedure}
+      query="rtk"
     />
   );
 };
