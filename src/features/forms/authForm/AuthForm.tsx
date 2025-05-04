@@ -4,10 +4,11 @@ import { useAppDispatch } from '../../../store/hooks';
 import { setToken } from '../../../features/auth/authSlice';
 import { randomNumberGenerator } from '../../../features/createRandomProduct';
 import { useNavigate } from 'react-router-dom';
-import { singup } from '../../../shared/api/auth/singup';
-import { backendErrorMessages } from '../../../shared/constants';
+import { backendErrorMessages, COMMAND_ID } from '../../../shared/constants';
 import { AuthMarkUp } from './AuthMarkUp';
 import { TAuthFormData } from './types';
+import { useMutation, ApolloError } from '@apollo/client';
+import { SIGN_UP } from 'src/graphql/mutations/profile';
 
 // Тип для видов формы
 type TAuth = 'reg' | 'auth';
@@ -59,19 +60,25 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
   // Стейт для заполнения ошибки по логину, приходящей с сервера
   const [errorLogin, setErrorLogin] = React.useState<string | null>(null);
 
+  const [signUp] = useMutation(SIGN_UP);
+
   const onSubmit = async (data: TAuthFormData) => {
     console.log(`Введенные данные в форме ${isRegProcedure ? 'регистрации' : 'авторизации'}: `, data);
 
     try {
       if (isRegProcedure) {
-        const response = await singup(data.login, data.pass);
+        const response = await signUp({
+          variables: {
+            email: data.login,
+            password: data.pass,
+            commandId: COMMAND_ID,
+          },
+        });
         console.log('Результат запроса:', response);
 
-        if (response?.errors) {
-          const code = response.errors[0].extensions.code;
-          setErrorLogin(backendErrorMessages[code] || 'Неизвестная ошибка');
-        } else if (response?.token) {
-          dispatch(setToken(response.token));
+        const token = response.data?.profile?.signup?.token;
+        if (token) {
+          dispatch(setToken(token));
           reset();
           navigation('/');
         } else {
@@ -83,7 +90,17 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
         navigation('/');
       }
     } catch (error) {
-      setErrorLogin('Ошибка соединения с сервером');
+      if (error instanceof ApolloError) {
+        if (error.graphQLErrors.length > 0) {
+          error.graphQLErrors.forEach(({ extensions }) => {
+            const code = extensions?.code;
+            console.log(code);
+            setErrorLogin(backendErrorMessages[code as string] || 'Неизвестная ошибка');
+          });
+        }
+      } else {
+        setErrorLogin('Ошибка соединения с сервером');
+      }
     }
   };
 
