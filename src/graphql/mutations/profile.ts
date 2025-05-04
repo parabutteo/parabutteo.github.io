@@ -16,3 +16,20 @@ export const SIGN_UP = gql`
     }
   }
 `;
+
+export const SIGN_IN = gql`
+  mutation Signin($email: String!, $password: String!) {
+    profile {
+      signin(email: $email, password: $password) {
+        token
+        profile {
+          id
+          name
+          email
+          signUpDate
+          commandId
+        }
+      }
+    }
+  }
+`;

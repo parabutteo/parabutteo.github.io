@@ -8,6 +8,7 @@ interface ISingUpResponse {
   token?: string;
 }
 
+// REST
 export const singup = async (email: string, password: string): Promise<ISingUpResponse> => {
   try {
     const response = await fetch(REST_API_SERVER_URL + `/signup`, {
@@ -26,6 +27,7 @@ export const singup = async (email: string, password: string): Promise<ISingUpRe
   }
 };
 
+// GraphQL
 export const signUp = createAsyncThunk(
   'user/signUp',
   async (credentials: { email: string; password: string; commandId: string }) => {

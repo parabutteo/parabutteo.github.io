@@ -10,4 +10,5 @@ export const backendErrorMessages: Record<string, string> = {
   VALIDATION: enterCorrectEmail,
   ERR_ACCOUNT_ALREADY_EXIST: existAccount,
   ACCOUNT_ALREADY_EXIST: existAccount,
+  INCORRECT_EMAIL_OR_PASSWORD: 'Введен неправильный логин или пароль',
 };
