@@ -1,7 +1,7 @@
 export const REST_API_SERVER_URL = 'https://19429ba06ff2.vps.myjino.ru/api';
 export const GRAPH_QL_SERVER = 'http://cea3c11a3f62.vps.myjino.ru/graphql';
 export const COMMAND_ID = 'parabutteo';
-export const ADMIN_ID = '66c3b6ce959ec5e015c21672';
+export const ADMIN_ID = '68192170959ec5e015c5854e';
 
 const existAccount = 'Уже существует пользователь с данным адресом электронной почты';
 const enterCorrectEmail = 'Введите корректный адрес электронной почты';
