@@ -5,6 +5,9 @@ import { AccessDenied } from '../../pages/AccessDenied';
 import { ModalItem } from '../../entities/ModalItem';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { initializeApp } from '../../features/app/appSlice';
+import { useQuery } from '@apollo/client';
+import { GET_PROFILE_ID } from 'src/graphql/queries/profile';
+import { ADMIN_ID } from 'src/shared/constants';
 
 export const AppRoutes: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +22,9 @@ export const AppRoutes: React.FC = () => {
   // Признак авторизованного пользователя
   const userIsAuth = token !== null;
   // Признак админской роли
-  const isAdminRole = token === 'admin';
+  const { data } = useQuery(GET_PROFILE_ID);
+  const profileId = data?.profile?.id || null;
+  const isAdminRole = profileId === ADMIN_ID;
 
   console.log(`Приложение ${isInit ? '' : 'не '}инициализированно`);
   console.log('Токен юзера: ' + token);

@@ -6,6 +6,9 @@ import { LanguageSwitcher } from '../Button/LanguageSwitcher';
 import { LoginButton } from '../Button/LoginButton';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
+import { useQuery } from '@apollo/client';
+import { GET_PROFILE_ID } from 'src/graphql/queries/profile';
+import { ADMIN_ID } from 'src/shared/constants';
 
 /**
  * "Хедер" приложения
@@ -16,7 +19,11 @@ export const Header: React.FC = () => {
 
   const token = useAppSelector((state) => state.auth.token);
   const isUserLoggedIn = token !== null;
-  const isAdminRole = token === 'admin';
+
+  // Признак админской роли
+  const { data } = useQuery(GET_PROFILE_ID);
+  const profileId = data?.profile?.id || null;
+  const isAdminRole = profileId === ADMIN_ID;
 
   const cartItems = useAppSelector((state) => state.cart.items);
   const cartItemsCounter = cartItems.reduce((acc, item) => acc + item.quantity, 0);
