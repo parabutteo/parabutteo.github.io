@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../../store/hooks';
 import { setToken } from '../../../features/auth/authSlice';
-import { randomNumberGenerator } from '../../../features/createRandomProduct';
 import { useNavigate } from 'react-router-dom';
 import { backendErrorMessages, COMMAND_ID } from '../../../shared/constants';
 import { AuthMarkUp } from './AuthMarkUp';
@@ -37,7 +36,6 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
     handleSubmit,
     reset,
     formState: { errors },
-    getValues,
   } = useForm<TAuthFormData>();
 
   // Признак формы регистрации
@@ -45,17 +43,6 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
 
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
-
-  // Хендлер для выдачи токена при авторизации
-  // Если токен админа -- формируем админский токен, иначе случайный
-  const tokenizeHandler = (): void => {
-    if (getValues('login') === 'admin@admin.ru') {
-      dispatch(setToken('admin'));
-    } else {
-      const tokenValue = randomNumberGenerator(1000, 9999);
-      dispatch(setToken(tokenValue.toString()));
-    }
-  };
 
   // Стейт для заполнения ошибки по логину, приходящей с сервера
   const [errorLogin, setErrorLogin] = React.useState<string | null>(null);

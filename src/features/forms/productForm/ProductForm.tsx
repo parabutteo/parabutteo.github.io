@@ -219,7 +219,7 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType, productData
           id="price"
           placeholder="Введите цену"
         />
-        {errors.price && <p className="error-message">{errors.price.message}</p>}
+        {errors.price && <p className="error">{errors.price.message}</p>}
       </div>
 
       <Button className="small margin-top-8" type="submit" disabled={loading}>
@@ -232,7 +232,7 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType, productData
         </Button>
       )}
 
-      {error && <p className="error-message">Ошибка: {error.message}</p>}
+      {error && <p className="error">Ошибка: {error.message}</p>}
     </form>
   );
 };
