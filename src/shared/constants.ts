@@ -13,3 +13,9 @@ export const backendErrorMessages: Record<string, string> = {
   ACCOUNT_ALREADY_EXIST: existAccount,
   INCORRECT_EMAIL_OR_PASSWORD: 'Введен неправильный логин или пароль',
 };
+
+export const CATEGORY = {
+  tshirt: '68192682959ec5e015c585a7',
+  underware: '68192690959ec5e015c585ae',
+  shoes: '68192696959ec5e015c585b5',
+};

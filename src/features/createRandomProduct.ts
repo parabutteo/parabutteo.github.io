@@ -9,8 +9,8 @@ export const createRandomProduct = (id: number): IShortCardItem => {
 
   const result: IShortCardItem = {
     id: id.toString(),
-    title: `Товар №${id}`,
-    image: createRandomProductImage(randomNumberGenerator(1, 4)),
+    name: `Товар №${id}`,
+    photo: createRandomProductImage(randomNumberGenerator(1, 4)),
     price: price,
     details: `Описание лучшего в мире товара с id №${id}`,
     category: 'random',

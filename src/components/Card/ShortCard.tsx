@@ -7,13 +7,13 @@ export interface IShortCardItem {
   /** Идентификатор */
   id: string;
   /** Заголовок */
-  title: string;
+  name: string;
   /** Описание */
   details: string;
   /** Цена */
   price: number;
   /** Главное изображение */
-  image: string;
+  photo: string;
   /** Категория */
   category: string;
 }
@@ -29,7 +29,7 @@ export interface IShortCard {
  */
 
 export const ShortCard: React.FC<IShortCard> = ({ item }) => {
-  const { title, details, price, image } = item;
+  const { name, details, price, photo, id } = item;
 
   const dispatch = useAppDispatch();
 
@@ -46,16 +46,17 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
 
   return (
     <article className="card short-card">
-      <img width="100%" src={image} alt="" />
+      <img width="100%" src={photo} alt="" />
       <div className="flex-column inner-12">
         <AddToBasket
           counter={totalQuantity}
           increaseClick={addItemToCartHandler}
           decreaseClick={removeItemFromCartHandler}
         />
-        <h3 className="margin-top-12 margin-bottom-8">{title}</h3>
+        <h3 className="margin-top-12 margin-bottom-8">{name}</h3>
         <p className="margin-bottom-12">{details.length > 50 ? `${details.slice(0, 50)}...` : details}</p>
         <span className="margin-bottom-8 txt-bold">{price}.00&nbsp;₽</span>
+        <span className="txt-gray">ID: {id}</span>
       </div>
     </article>
   );

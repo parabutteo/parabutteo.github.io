@@ -6,11 +6,69 @@ export const ADD_PRODUCT = gql`
       add(input: $input) {
         id
         name
+        photo
+        desc
+        oldPrice
         price
         category {
           id
           name
+          photo
+          commandId
         }
+        commandId
+      }
+    }
+  }
+`;
+
+export const PUT_PRODUCT = gql`
+  mutation PutProduct($putId: ID!, $input: ProductUpdateInput!) {
+    products {
+      put(id: $putId, input: $input) {
+        id
+        name
+        photo
+        desc
+        createdAt
+        updatedAt
+        oldPrice
+        price
+        category {
+          id
+          name
+          photo
+          createdAt
+          updatedAt
+          commandId
+        }
+        commandId
+      }
+    }
+  }
+`;
+
+export const REMOVE_PRODUCT = gql`
+  mutation RemoveProduct($removeId: ID!) {
+    products {
+      remove(id: $removeId) {
+        id
+        name
+        photo
+        desc
+        createdAt
+        updatedAt
+        oldPrice
+        price
+        category {
+          id
+          name
+          photo
+          createdAt
+          updatedAt
+          commandId
+        }
+        commandId
       }
     }
   }

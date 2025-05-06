@@ -3,9 +3,9 @@ import createRandomProductImage from '../createRandomProductImage';
 
 interface Product {
   id: string;
-  title: string;
+  name: string;
   price: number;
-  image: string;
+  photo: string;
   category: string;
   details: string;
 }
@@ -13,34 +13,34 @@ interface Product {
 const initialState: Product[] = [
   {
     id: '1',
-    title: 'Рубашка',
+    name: 'Рубашка',
     details: 'Рубашка с принтом',
     price: 1200,
-    image: createRandomProductImage(3),
+    photo: createRandomProductImage(3),
     category: 'Футболки, рубашки',
   },
   {
     id: '2',
-    title: 'Кардиган',
+    name: 'Кардиган',
     details: 'Вязаный кардиган',
     price: 2800,
-    image: createRandomProductImage(1),
+    photo: createRandomProductImage(1),
     category: 'Футболки, рубашки',
   },
   {
     id: '3',
-    title: 'Джемпер',
+    name: 'Джемпер',
     details: 'Крупная вязка',
     price: 1700,
-    image: createRandomProductImage(2),
+    photo: createRandomProductImage(2),
     category: 'Футболки, рубашки',
   },
   {
     id: '4',
-    title: 'Жилетка',
+    name: 'Жилетка',
     details: 'Базовая жилетка',
     price: 2100,
-    image: createRandomProductImage(4),
+    photo: createRandomProductImage(4),
     category: 'Футболки, рубашки',
   },
 ];
