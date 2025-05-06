@@ -2,6 +2,9 @@ import React from 'react';
 import { AddToBasket } from '../Button/AddToBasket';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addItemToCart, removeItemFromCart } from '../../features/cart/cartSlice';
+import { GET_PROFILE_ID } from 'src/graphql/queries/profile';
+import { useQuery } from '@apollo/client';
+import { ADMIN_ID } from 'src/shared/constants';
 
 export interface IShortCardItem {
   /** Идентификатор */
@@ -44,6 +47,11 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
   const cartItems = useAppSelector((state) => state.cart.items);
   const totalQuantity = cartItems.reduce((acc, items) => (items.id === item.id ? acc + items.quantity : acc), 0);
 
+  // Признак админской роли
+  const { data: pid } = useQuery(GET_PROFILE_ID);
+  const profileId = pid?.profile?.id || null;
+  const isAdminRole = profileId === ADMIN_ID;
+
   return (
     <article className="card short-card">
       <img width="100%" src={photo} alt="" />
@@ -56,7 +64,7 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
         <h3 className="margin-top-12 margin-bottom-8">{name}</h3>
         <p className="margin-bottom-12">{details.length > 50 ? `${details.slice(0, 50)}...` : details}</p>
         <span className="margin-bottom-8 txt-bold">{price}.00&nbsp;₽</span>
-        <span className="txt-gray">ID: {id}</span>
+        {isAdminRole && <span className="txt-gray">ID: {id}</span>}
       </div>
     </article>
   );

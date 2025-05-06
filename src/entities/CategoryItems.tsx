@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ShortCard } from '../components';
+import { Button, Loader, ShortCard } from '../components';
 import { createRandomProduct } from '../features/createRandomProduct';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { addRandomProducts } from '../features/products/productsSlice';
@@ -43,16 +43,18 @@ export const CategoryItems: React.FC = () => {
 
   return (
     <>
+      {loading && <Loader />}
       <div className="grid">
-        {loading && <p>Загрузка товаров...</p>}
         {error && <p>Ошибка загрузки товаров: {error.message}</p>}
         {!loading && !error && normalizedProducts.length > 0
           ? normalizedProducts.map((item) => <ShortCard item={item} key={item.id} />)
           : !loading && !error && <p>Нет данных или данные не в формате массива</p>}
       </div>
-      <Button className="margin-auto primary margin-bottom-32" onClick={showMoreBtnHandler}>
-        Показать ещё
-      </Button>
+      {!loading && !error && (
+        <Button className="margin-auto primary margin-bottom-32" onClick={showMoreBtnHandler}>
+          Показать ещё
+        </Button>
+      )}
     </>
   );
 };

@@ -58,7 +58,6 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType, productData
     },
   });
 
-
   // Признак формы с типом "добавление товара"
   const isAddProcedure = procedureType === 'add';
 
@@ -159,59 +158,69 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType, productData
       )}
 
       <label htmlFor="name">Название</label>
-      <input
-        {...register('name', { required: 'Введите название товара' })}
-        className={clsx(errors.name && 'error-field', 'grid-content')}
-        type="text"
-        id="name"
-        placeholder="Введите название"
-      />
-      {errors.name && <p className="error-message">{errors.name.message}</p>}
+      <div className="grid-content">
+        <input
+          {...register('name', { required: 'Введите название товара' })}
+          className={clsx(errors.name && 'error-field', 'grid-content')}
+          type="text"
+          id="name"
+          placeholder="Введите название"
+        />
+        {errors.name && <p className="error">{errors.name.message}</p>}
+      </div>
 
       <label htmlFor="category">Категория</label>
-      <select
-        {...register('category', { required: 'Выберите категорию' })}
-        className={clsx(errors.category && 'error-field', 'grid-content')}
-        id="category"
-      >
-        <option value="">Выберите категорию</option>
-        <option value={CATEGORY.tshirt}>Футболки, рубашки</option>
-        <option value={CATEGORY.underware}>Верхняя одежда</option>
-        <option value={CATEGORY.shoes}>Обувь</option>
-      </select>
-      {errors.category && <p className="error-message">{errors.category.message}</p>}
+      <div className="grid-content">
+        <select
+          {...register('category', { required: 'Выберите категорию' })}
+          className={clsx(errors.category && 'error-field', 'grid-content')}
+          id="category"
+        >
+          <option value="">Выберите категорию</option>
+          <option value={CATEGORY.tshirt}>Футболки, рубашки</option>
+          <option value={CATEGORY.underware}>Верхняя одежда</option>
+          <option value={CATEGORY.shoes}>Обувь</option>
+        </select>
+        {errors.category && <p className="error">{errors.category.message}</p>}
+      </div>
 
       <label htmlFor="photo">Путь к изображению</label>
-      <textarea
-        {...register('photo', { required: 'Введите путь к изображению' })}
-        className={clsx(errors.photo && 'error-field', 'grid-content')}
-        id="photo"
-        placeholder="Введите адреса через запятую"
-      />
-      {errors.photo && <p className="error-message">{errors.photo.message}</p>}
+      <div className="grid-content">
+        <input
+          {...register('photo', { required: 'Введите путь к изображению' })}
+          className={clsx(errors.photo && 'error-field', 'grid-content')}
+          id="photo"
+          placeholder="Введите адрес изображения"
+        />
+        {errors.photo && <p className="error">{errors.photo.message}</p>}
+      </div>
 
       <label htmlFor="details">Описание</label>
-      <textarea
-        {...register('details', { required: 'Введите описание товара' })}
-        className={clsx(errors.details && 'error-field', 'grid-content')}
-        id="details"
-        placeholder="Введите описание"
-      />
-      {errors.details && <p className="error-message">{errors.details.message}</p>}
+      <div className="grid-content">
+        <textarea
+          {...register('details', { required: 'Введите описание товара' })}
+          className={clsx(errors.details && 'error-field', 'grid-content')}
+          id="details"
+          placeholder="Введите описание"
+        />
+        {errors.details && <p className="error">{errors.details.message}</p>}
+      </div>
 
       <label htmlFor="price">Цена</label>
-      <input
-        {...register('price', {
-          required: 'Введите цену',
-          valueAsNumber: true,
-          min: { value: 0, message: 'Цена должна быть больше или равна 0' },
-        })}
-        className={clsx(errors.price && 'error-field', 'grid-content')}
-        type="number"
-        id="price"
-        placeholder="Введите цену"
-      />
-      {errors.price && <p className="error-message">{errors.price.message}</p>}
+      <div className="grid-content">
+        <input
+          {...register('price', {
+            required: 'Введите цену',
+            valueAsNumber: true,
+            min: { value: 0, message: 'Цена должна быть больше или равна 0' },
+          })}
+          className={clsx(errors.price && 'error-field', 'grid-content')}
+          type="number"
+          id="price"
+          placeholder="Введите цену"
+        />
+        {errors.price && <p className="error-message">{errors.price.message}</p>}
+      </div>
 
       <Button className="small margin-top-8" type="submit" disabled={loading}>
         {isAddProcedure ? 'Добавить' : 'Сохранить'}
