@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { ApolloClient, ApolloProvider, InMemoryCache, split, HttpLink } from '@apollo/client';
-import { GRAPH_QL_SERVER } from 'src/shared/constants';
+import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from '@apollo/client';
+import { GRAPH_QL_SERVER } from '../shared/constants';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = new HttpLink({

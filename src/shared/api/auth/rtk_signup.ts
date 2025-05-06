@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { REST_API_SERVER_URL, COMMAND_ID } from 'src/shared/constants';
+import { REST_API_SERVER_URL, COMMAND_ID } from '../../../shared/constants';
 
 export interface ISingUpResponse {
   token?: string;

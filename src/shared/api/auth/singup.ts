@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { REST_API_SERVER_URL, COMMAND_ID } from '../../constants';
-import { client } from 'src/client/ApolloClient';
-import { SIGN_UP } from 'src/graphql/mutations/profile';
+import { client } from '../../../client/ApolloClient';
+import { SIGN_UP } from '../../../graphql/mutations/profile';
 
 interface ISingUpResponse {
   errors?: Array<{ extensions: { code: string } }>;

@@ -3,7 +3,7 @@ import authReducer from '../features/auth/authSlice';
 import appReducer from '../features/app/appSlice';
 import cartReducer from '../features/cart/cartSlice';
 import productsReducer from '../features/products/productsSlice';
-import { rtk_signup } from 'src/shared/api/auth/rtk_signup';
+import { rtk_signup } from '../shared/api/auth/rtk_signup';
 
 const store = configureStore({
   reducer: {

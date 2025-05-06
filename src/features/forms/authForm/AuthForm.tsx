@@ -1,13 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../../store/hooks';
-import { setToken } from '../../../features/auth/authSlice';
+import { setProfileID, setToken } from '../../../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { backendErrorMessages, COMMAND_ID } from '../../../shared/constants';
 import { AuthMarkUp } from './AuthMarkUp';
 import { TAuthFormData } from './types';
 import { useMutation, ApolloError } from '@apollo/client';
-import { SIGN_IN, SIGN_UP } from 'src/graphql/mutations/profile';
+import { SIGN_IN, SIGN_UP } from '../../../graphql/mutations/profile';
 
 // Тип для видов формы
 type TAuth = 'reg' | 'auth';
@@ -73,8 +73,13 @@ export const AuthForm: React.FC<IAuthForm> = ({ authType }) => {
       console.log('Результат запроса:', response);
 
       const token = isRegProcedure ? response.data?.profile?.signup?.token : response.data?.profile?.signin?.token;
+      const pid = isRegProcedure
+        ? response.data?.profile?.signup?.profile?.id
+        : response.data?.profile?.signin?.profile?.id;
+
       if (token) {
         dispatch(setToken(token));
+        dispatch(setProfileID(pid));
         reset();
         navigation('/');
       } else {

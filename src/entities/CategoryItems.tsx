@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Loader, ShortCard } from '../components';
-import { useAppSelector } from '../store/hooks';
-import { GET_PRODUCTS } from 'src/graphql/queries/products';
+import { GET_PRODUCTS } from '../graphql/queries/products';
 import { useQuery } from '@apollo/client';
-import { IShortCardItem } from 'src/components/Card/ShortCard';
+import { IShortCardItem } from '../components/Card/ShortCard';
 
 export const CategoryItems: React.FC = () => {
-  // Локальный стейт для количества видимых товаров
   const [visibleCount, setVisibleCount] = useState(4);
 
-  // Получаем состояние продуктов из Redux (если нужно)
-  const productsStore = useAppSelector((state) => state.products);
-
-  // Параметры запроса (укажите нужные)
+  // Параметры запроса
   const input = {
-    // например: categoryId: 'some-id', limit: 20 и т.д.
+    // например: categoryId: 'some-id'
   };
 
-  // Запрос товаров через Apollo Client
   const { data, loading, error } = useQuery(GET_PRODUCTS, {
     variables: { input },
   });

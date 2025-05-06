@@ -2,9 +2,9 @@ import React from 'react';
 import { AddToBasket } from '../Button/AddToBasket';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addItemToCart, removeItemFromCart } from '../../features/cart/cartSlice';
-import { GET_PROFILE_ID } from 'src/graphql/queries/profile';
+import { GET_PROFILE_ID } from '../../graphql/queries/profile';
 import { useQuery } from '@apollo/client';
-import { ADMIN_ID } from 'src/shared/constants';
+import { ADMIN_ID } from '../../shared/constants';
 
 export interface IShortCardItem {
   /** Идентификатор */

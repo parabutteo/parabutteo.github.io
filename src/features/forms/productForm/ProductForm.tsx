@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import clsx from 'clsx';
 import { Button } from '../../../components';
-import { CATEGORY } from 'src/shared/constants';
-import { ADD_PRODUCT, PUT_PRODUCT, REMOVE_PRODUCT } from 'src/graphql/mutations/products';
+import { CATEGORY } from '../../../shared/constants';
+import { ADD_PRODUCT, PUT_PRODUCT, REMOVE_PRODUCT } from '../../../graphql/mutations/products';
 
 type TProcedure = 'add' | 'edit';
 
