@@ -22,6 +22,6 @@ export const CATEGORY = {
 
 export const categoryMap: Record<string, string> = {
   'Верхняя одежда': 'outerwear',
-  'Рубашки, футболки': 'tsirts',
+  'Футболки, рубашки': 'tsirts',
   Обувь: 'shoes',
 };

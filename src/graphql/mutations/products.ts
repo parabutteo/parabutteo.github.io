@@ -8,7 +8,6 @@ export const ADD_PRODUCT = gql`
         name
         photo
         desc
-        oldPrice
         price
         category {
           id
@@ -30,16 +29,11 @@ export const PUT_PRODUCT = gql`
         name
         photo
         desc
-        createdAt
-        updatedAt
-        oldPrice
         price
         category {
           id
           name
           photo
-          createdAt
-          updatedAt
           commandId
         }
         commandId
@@ -56,16 +50,11 @@ export const REMOVE_PRODUCT = gql`
         name
         photo
         desc
-        createdAt
-        updatedAt
-        oldPrice
         price
         category {
           id
           name
           photo
-          createdAt
-          updatedAt
           commandId
         }
         commandId
