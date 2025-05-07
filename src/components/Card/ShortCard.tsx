@@ -4,8 +4,12 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addItemToCart, removeItemFromCart } from '../../features/cart/cartSlice';
 import { GET_PROFILE_ID } from '../../graphql/queries/profile';
 import { useQuery } from '@apollo/client';
-import { ADMIN_ID } from '../../shared/constants';
+import { ADMIN_ID, categoryMap } from '../../shared/constants';
 import { useNavigate } from 'react-router-dom';
+
+interface Category {
+  name: string;
+}
 
 export interface IShortCardItem {
   /** Идентификатор */
@@ -19,7 +23,7 @@ export interface IShortCardItem {
   /** Главное изображение */
   photo: string;
   /** Категория */
-  category: string;
+  category: Category;
 }
 
 export interface IShortCard {
@@ -33,9 +37,10 @@ export interface IShortCard {
  */
 
 export const ShortCard: React.FC<IShortCard> = ({ item }) => {
-  const { name, desc, price, photo, id } = item;
+  const { name, desc, price, photo, id, category } = item;
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const addItemToCartHandler = (event: React.MouseEvent): void => {
     event.stopPropagation();
@@ -55,10 +60,10 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
   const profileId = pid?.profile?.id || null;
   const isAdminRole = profileId === ADMIN_ID;
 
-  const navigate = useNavigate();
+  const categoryPath = categoryMap[category.name];
 
   return (
-    <article className="card short-card" onClick={() => navigate(`/card/${id}`)}>
+    <article className="card short-card" onClick={() => navigate(`/card/${categoryPath}/id/${id}`)}>
       <img width="100%" src={photo} alt="" />
       <div className="flex-column inner-12">
         <AddToBasket

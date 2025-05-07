@@ -34,7 +34,7 @@ export const AppRoutes: React.FC = () => {
         <Route path="/" element={<Catalog />} />
         <Route path="/profile" element={userIsAuth ? <Profile /> : <AccessDenied />} />
         <Route path="/basket" element={<Basket />} />
-        <Route path="/card/:id" element={<Card />} />
+        <Route path="/card/:category/id/:id" element={<Card />} />
         {userIsAuth && isAdminRole && (
           <Route path="/admin" element={<Admin />}>
             <Route path="add-item" element={<ModalItem modalType="add" />} />

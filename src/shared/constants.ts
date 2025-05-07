@@ -16,6 +16,12 @@ export const backendErrorMessages: Record<string, string> = {
 
 export const CATEGORY = {
   tshirt: '68192682959ec5e015c585a7',
-  underware: '68192690959ec5e015c585ae',
+  outware: '68192690959ec5e015c585ae',
   shoes: '68192696959ec5e015c585b5',
+};
+
+export const categoryMap: Record<string, string> = {
+  'Верхняя одежда': 'outerwear',
+  'Рубашки, футболки': 'tsirts',
+  Обувь: 'shoes',
 };

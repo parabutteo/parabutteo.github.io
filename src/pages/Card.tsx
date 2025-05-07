@@ -27,7 +27,7 @@ export const Card: React.FC = () => {
   const product = data?.products.getOne;
 
   return (
-    <Layout title="Карточка товара">
+    <Layout title={product?.category.name}>
       {error && <div>Ошибка: {error.message}</div>}
       {(loading || !showContent) && <Loader />}
       {!loading && showContent && product && (

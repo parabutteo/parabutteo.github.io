@@ -13,7 +13,7 @@ export const createRandomProduct = (id: number): IShortCardItem => {
     photo: createRandomProductImage(randomNumberGenerator(1, 4)),
     price: price,
     desc: `Описание лучшего в мире товара с id №${id}`,
-    category: 'random',
+    category: { name: 'random' },
   };
 
   return result;

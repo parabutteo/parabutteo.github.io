@@ -20,7 +20,7 @@ export interface IFullCard {
  * Детальная карточка товара
  */
 
-export const FullCard: React.FC<IFullCard> = ({ id, title, category, price, details, image }) => {
+export const FullCard: React.FC<IFullCard> = ({ id, title, price, details, image }) => {
   const dispatch = useAppDispatch();
 
   const removeItemFromCartHandler = () => dispatch(removeItemFromCart(id));
@@ -35,7 +35,6 @@ export const FullCard: React.FC<IFullCard> = ({ id, title, category, price, deta
       </div>
       <div className="flex-column align-items-start padding-left-24 inner-12">
         <h2 className="margin-bottom-12">{title}</h2>
-        <span className="label margin-bottom-12">{category}</span>
         <p className="margin-bottom-16">{details}</p>
         <span className="margin-bottom-24 txt-bold txt-large">{price}.00&nbsp;₽</span>
         <AddToBasket

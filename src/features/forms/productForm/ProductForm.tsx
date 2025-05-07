@@ -178,7 +178,7 @@ export const ProductForm: React.FC<IProductForm> = ({ procedureType, productData
         >
           <option value="">Выберите категорию</option>
           <option value={CATEGORY.tshirt}>Футболки, рубашки</option>
-          <option value={CATEGORY.underware}>Верхняя одежда</option>
+          <option value={CATEGORY.outware}>Верхняя одежда</option>
           <option value={CATEGORY.shoes}>Обувь</option>
         </select>
         {errors.category && <p className="error">{errors.category.message}</p>}
