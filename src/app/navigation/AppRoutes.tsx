@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Admin, Auth, Basket, Catalog, Magic, NotFoundPage, Profile, Reg, RegRTK } from '../../pages';
+import { Admin, Auth, Basket, Card, Catalog, Magic, NotFoundPage, Profile, Reg, RegRTK } from '../../pages';
 import { AccessDenied } from '../../pages/AccessDenied';
 import { ModalItem } from '../../entities/ModalItem';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { initializeApp } from '../../features/app/appSlice';
 import { ADMIN_ID } from '../../shared/constants';
+import { FullCard } from 'src/components';
 
 export const AppRoutes: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -34,6 +35,7 @@ export const AppRoutes: React.FC = () => {
         <Route path="/" element={<Catalog />} />
         <Route path="/profile" element={userIsAuth ? <Profile /> : <AccessDenied />} />
         <Route path="/basket" element={<Basket />} />
+        <Route path="/card/:id" element={<Card />} />
         {userIsAuth && isAdminRole && (
           <Route path="/admin" element={<Admin />}>
             <Route path="add-item" element={<ModalItem modalType="add" />} />

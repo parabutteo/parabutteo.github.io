@@ -5,6 +5,7 @@ import { addItemToCart, removeItemFromCart } from '../../features/cart/cartSlice
 import { GET_PROFILE_ID } from '../../graphql/queries/profile';
 import { useQuery } from '@apollo/client';
 import { ADMIN_ID } from '../../shared/constants';
+import { useNavigate } from 'react-router-dom';
 
 export interface IShortCardItem {
   /** Идентификатор */
@@ -32,7 +33,7 @@ export interface IShortCard {
  */
 
 export const ShortCard: React.FC<IShortCard> = ({ item }) => {
-  const { name, details, price, photo, id } = item;
+  const { name, details, price, photo, category, id } = item;
 
   const dispatch = useAppDispatch();
 
@@ -52,8 +53,10 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
   const profileId = pid?.profile?.id || null;
   const isAdminRole = profileId === ADMIN_ID;
 
+  const navigate = useNavigate();
+
   return (
-    <article className="card short-card">
+    <article className="card short-card" onClick={() => navigate(`/card/${id}`)}>
       <img width="100%" src={photo} alt="" />
       <div className="flex-column inner-12">
         <AddToBasket
