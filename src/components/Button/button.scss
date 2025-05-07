@@ -60,10 +60,10 @@
   }
 
   input {
-    border-left: none;
-    border-right: none;
-    border-top: 2px solid $pink;
-    border-bottom: 2px solid $pink;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 2px solid $pink !important;
+    border-bottom: 2px solid $pink !important;
     height: 46.5px;
     margin-left: -4px;
     margin-right: -4px;

@@ -18,8 +18,6 @@ export interface IShortCardItem {
   price: number;
   /** Главное изображение */
   photo: string;
-  /** Категория */
-  category: string;
 }
 
 export interface IShortCard {
@@ -33,15 +31,17 @@ export interface IShortCard {
  */
 
 export const ShortCard: React.FC<IShortCard> = ({ item }) => {
-  const { name, details, price, photo, category, id } = item;
+  const { name, details, price, photo, id } = item;
 
   const dispatch = useAppDispatch();
 
-  const addItemToCartHandler = (): void => {
+  const addItemToCartHandler = (event: React.MouseEvent): void => {
+    event.stopPropagation();
     dispatch(addItemToCart({ id: item.id }));
   };
 
-  const removeItemFromCartHandler = (): void => {
+  const removeItemFromCartHandler = (event: React.MouseEvent): void => {
+    event.stopPropagation();
     dispatch(removeItemFromCart(item.id));
   };
 

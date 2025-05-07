@@ -8,9 +8,9 @@ interface IAddToBasket {
   /** Признак заблокированности кнопки */
   isDisabled?: boolean;
   /** Хендлер клика при добавлении */
-  increaseClick: () => void;
+  increaseClick: (event: React.MouseEvent) => void;
   /** Хендлер клика при удалении */
-  decreaseClick: () => void;
+  decreaseClick: (event: React.MouseEvent) => void;
 }
 
 /**
