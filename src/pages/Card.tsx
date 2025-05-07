@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { FullCard, Layout, Loader } from '../components';
-import { GET_PRODUCT } from 'src/graphql/queries/products';
+import { GET_PRODUCT } from '../graphql/queries/products';
 import { useQuery } from '@apollo/client';
 
 export const Card: React.FC = () => {
@@ -32,6 +32,7 @@ export const Card: React.FC = () => {
       {(loading || !showContent) && <Loader />}
       {!loading && showContent && product && (
         <FullCard
+          id={id}
           title={product.name}
           price={product.price}
           details={product.desc}

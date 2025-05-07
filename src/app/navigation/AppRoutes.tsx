@@ -6,7 +6,6 @@ import { ModalItem } from '../../entities/ModalItem';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { initializeApp } from '../../features/app/appSlice';
 import { ADMIN_ID } from '../../shared/constants';
-import { FullCard } from 'src/components';
 
 export const AppRoutes: React.FC = () => {
   const dispatch = useAppDispatch();

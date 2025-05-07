@@ -3,7 +3,7 @@ import { AddToBasket } from '../Button/AddToBasket';
 import { useAppDispatch } from '../../store/hooks';
 import { addItemToCart, removeFromCart, removeItemFromCart } from '../../features/cart/cartSlice';
 import { useQuery } from '@apollo/client';
-import { GET_PRODUCT } from 'src/graphql/queries/products';
+import { GET_PRODUCT } from '../../graphql/queries/products';
 
 interface IBasketItem {
   id: string;
