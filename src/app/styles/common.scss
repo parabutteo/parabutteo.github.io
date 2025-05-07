@@ -118,6 +118,12 @@ h1 {
   }
 }
 
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: rgba($dark, .3);
+}
+
 .padding {
   &-left-24 {
     padding-left: 24px !important;
@@ -163,6 +169,14 @@ h1 {
   &-start {
     align-items: flex-start;
   }
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
 }
 
 .txt {

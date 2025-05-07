@@ -86,3 +86,23 @@ export const REMOVE_CATEGORY = gql`
     }
   }
 `;
+
+export const ADD_ORDER = gql`
+  mutation AddOrder($input: OrderAddInput!) {
+    orders {
+      add(input: $input) {
+        id
+      }
+    }
+  }
+`;
+
+export const REMOVE_ORDER = gql`
+  mutation RemoveOrder($removeId: ID!) {
+    orders {
+      remove(id: $removeId) {
+        id
+      }
+    }
+  }
+`;

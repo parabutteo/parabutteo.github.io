@@ -48,3 +48,29 @@ export const GET_CATEGORIES = gql`
     }
   }
 `;
+
+export const GET_ORDERS = gql`
+  query ExampleQuery($input: OrderGetManyInput) {
+    orders {
+      getMany(input: $input) {
+        data {
+          id
+          products {
+            _id
+            product {
+              id
+              name
+            }
+            quantity
+          }
+          user {
+            id
+            name
+            commandId
+          }
+          commandId
+        }
+      }
+    }
+  }
+`;

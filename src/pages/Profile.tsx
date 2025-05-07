@@ -3,6 +3,7 @@ import { Button, Layout } from '../components';
 import { ProfileForm } from '../features/forms';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { updateProfile } from '../features/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 export type ProfileT = {
   id: string;
@@ -12,6 +13,7 @@ export type ProfileT = {
 };
 
 export const Profile: React.FC = () => {
+  const navigate = useNavigate();
   const profileInfo = useAppSelector((state) => state.auth.profile);
 
   const [isEditMode, setIsEditMode] = React.useState<boolean>(false);
@@ -37,6 +39,8 @@ export const Profile: React.FC = () => {
 
   return (
     <Layout title="Профиль">
+      <Button className="primary margin-bottom-32" onClick={() => navigate('/profile/orders')}>Перейти к моим заказам</Button>
+      <div className="divider margin-bottom-32" />
       {!isEditMode ? (
         <>
           <dl className="list">
