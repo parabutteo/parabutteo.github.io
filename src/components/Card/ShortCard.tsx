@@ -13,11 +13,13 @@ export interface IShortCardItem {
   /** Заголовок */
   name: string;
   /** Описание */
-  details: string;
+  desc: string;
   /** Цена */
   price: number;
   /** Главное изображение */
   photo: string;
+  /** Категория */
+  category: string;
 }
 
 export interface IShortCard {
@@ -31,7 +33,7 @@ export interface IShortCard {
  */
 
 export const ShortCard: React.FC<IShortCard> = ({ item }) => {
-  const { name, details, price, photo, id } = item;
+  const { name, desc, price, photo, id } = item;
 
   const dispatch = useAppDispatch();
 
@@ -65,7 +67,7 @@ export const ShortCard: React.FC<IShortCard> = ({ item }) => {
           decreaseClick={removeItemFromCartHandler}
         />
         <h3 className="margin-top-12 margin-bottom-8">{name}</h3>
-        <p className="margin-bottom-12">{details.length > 50 ? `${details.slice(0, 50)}...` : details}</p>
+        <p className="margin-bottom-12">{desc.length > 50 ? `${desc.slice(0, 50)}...` : desc}</p>
         <span className="margin-bottom-8 txt-bold">{price}.00&nbsp;₽</span>
         {isAdminRole && <span className="txt-gray">ID: {id}</span>}
       </div>

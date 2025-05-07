@@ -1,10 +1,15 @@
 import React from 'react';
-import { BasketItem, Layout } from '../components';
+import { BasketItem, Layout, Loader } from '../components';
 import { useAppSelector } from '../store/hooks';
 import { Link } from 'react-router-dom';
 
 export const Basket: React.FC = () => {
   const cartItems = useAppSelector((state) => state.cart.items);
+  const [loadingCount, setLoadingCount] = React.useState(0);
+
+  const onItemLoading = (isLoading: boolean) => {
+    setLoadingCount((count) => count + (isLoading ? 1 : -1));
+  };
 
   return (
     <Layout title="Корзина">
@@ -17,8 +22,10 @@ export const Basket: React.FC = () => {
         </>
       )}
 
+      {loadingCount > 0 && <Loader />}
+
       {cartItems.map((item) => (
-        <BasketItem key={item.id} id={item.id} counter={item.quantity} />
+        <BasketItem key={item.id} id={item.id} counter={item.quantity} onLoading={onItemLoading} />
       ))}
     </Layout>
   );

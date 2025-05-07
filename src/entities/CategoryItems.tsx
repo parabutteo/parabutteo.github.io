@@ -22,10 +22,10 @@ export const CategoryItems: React.FC = () => {
   // Приводим данные к нужному типу
   const normalizedProducts: IShortCardItem[] =
     products && Array.isArray(products)
-      ? products.map((p: any) => ({
+      ? products.map((p: IShortCardItem) => ({
           id: p.id,
           name: p.name,
-          details: p.desc || '',
+          desc: p.desc,
           price: p.price,
           photo: p.photo,
           category: p.category,
