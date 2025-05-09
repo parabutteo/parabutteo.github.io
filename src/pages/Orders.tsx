@@ -3,6 +3,7 @@ import { Button, Layout, Loader } from '../components';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ORDERS } from '../graphql/queries/products';
 import { REMOVE_ORDER } from '../graphql/mutations/products';
+import { Link } from 'react-router-dom';
 
 export const Orders: React.FC = () => {
   const input = {};
@@ -29,8 +30,6 @@ export const Orders: React.FC = () => {
       });
     }
   };
-
-  console.log(ordersList)
 
   return (
     <Layout title="Мои заказы">
@@ -59,11 +58,7 @@ export const Orders: React.FC = () => {
             <>
               <p className="margin-top-32">Заказы не найдены.</p>
               <p className="margin-top-8">
-                Вы можете вернуться на{' '}
-                <a href="/" data-discover="true">
-                  главную
-                </a>
-                .
+                Вы можете вернуться на <Link to="/">главную</Link>.
               </p>
             </>
           )}

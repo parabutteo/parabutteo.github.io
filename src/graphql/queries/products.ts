@@ -9,6 +9,7 @@ export const GET_PRODUCTS = gql`
           name
           photo
           price
+          commandId
           category {
             name
           }

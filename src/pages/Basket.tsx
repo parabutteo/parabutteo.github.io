@@ -27,16 +27,25 @@ export const Basket: React.FC = () => {
 
   const handleAddOrder = () => {
     addOrder({ variables: { input: orderInput } })
-      .then((response) => console.log('Order ID:', response.data.orders.add.id))
+      .then((response) => {
+        console.log('Order ID:', response.data.orders.add.id);
+        dispatch(clearCart());
+      })
       .catch((error) => console.error(error));
-    dispatch(clearCart());
   };
 
   const emptyBasket = cartItems.length === 0;
 
   return (
     <Layout title="Корзина">
-      {data && <p className="margin-bottom-24">Заказ успешно оформлен! ID: {data.orders.add.id}</p>}
+      {data && (
+        <>
+          <p>Заказ успешно оформлен! ID: {data.orders.add.id}</p>
+          <p className="margin-top-8">
+            Перейти к разделу <Link to="/profile/orders">Мои заказы</Link>
+          </p>
+        </>
+      )}
 
       {emptyBasket && (
         <>
@@ -53,7 +62,7 @@ export const Basket: React.FC = () => {
         <BasketItem key={item.id} id={item.id} counter={item.quantity} onLoading={onItemLoading} />
       ))}
 
-      {error && <p className="error margin-bottom-24">Ошибка при оформлении заказа: {error.message}</p>}
+      {error && <p className="error margin-bottom-24 margin-top-16">Ошибка при оформлении заказа: {error.message}</p>}
 
       {!emptyBasket && (
         <Button className="primary right clear" onClick={handleAddOrder} disabled={loading}>

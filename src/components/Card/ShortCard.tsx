@@ -14,6 +14,8 @@ interface Category {
 export interface IShortCardItem {
   /** Идентификатор */
   id: string;
+  /** ID команды */
+  commandId?: string;
   /** Заголовок */
   name: string;
   /** Описание */

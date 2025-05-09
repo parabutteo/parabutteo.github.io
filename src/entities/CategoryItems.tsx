@@ -3,6 +3,7 @@ import { Button, Loader, ShortCard } from '../components';
 import { GET_PRODUCTS } from '../graphql/queries/products';
 import { useQuery } from '@apollo/client';
 import { IShortCardItem } from '../components/Card/ShortCard';
+import { COMMAND_ID } from 'src/shared/constants';
 
 export const CategoryItems: React.FC = () => {
   const [visibleCount, setVisibleCount] = React.useState(4);
@@ -22,14 +23,16 @@ export const CategoryItems: React.FC = () => {
   // Приводим данные к нужному типу
   const normalizedProducts: IShortCardItem[] =
     products && Array.isArray(products)
-      ? products.map((p: IShortCardItem) => ({
-          id: p.id,
-          name: p.name,
-          desc: p.desc,
-          price: p.price,
-          photo: p.photo,
-          category: p.category,
-        }))
+      ? products
+          .filter((p: IShortCardItem) => p.commandId === COMMAND_ID)
+          .map((p: IShortCardItem) => ({
+            id: p.id,
+            name: p.name,
+            desc: p.desc,
+            price: p.price,
+            photo: p.photo,
+            category: p.category,
+          }))
       : [];
 
   // Ограничиваем отображение товаров по visibleCount
