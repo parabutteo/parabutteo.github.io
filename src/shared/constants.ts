@@ -1,5 +1,5 @@
 export const REST_API_SERVER_URL = 'https://19429ba06ff2.vps.myjino.ru/api';
-export const GRAPH_QL_SERVER = 'http://cea3c11a3f62.vps.myjino.ru/graphql';
+export const GRAPH_QL_SERVER = 'https://cea3c11a3f62.vps.myjino.ru/graphql';
 export const COMMAND_ID = 'parabutteo';
 export const ADMIN_ID = '68192170959ec5e015c5854e';
 
