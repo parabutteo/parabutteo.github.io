@@ -14,3 +14,5 @@ export { BasketItem } from './Card/BasketItem';
 
 export { Resizer } from './Resizer/Resizer';
 export { Collapse } from './Collapse/Collapse';
+
+export { Loader } from './Loader/Loader';

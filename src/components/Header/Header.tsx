@@ -6,6 +6,7 @@ import { LanguageSwitcher } from '../Button/LanguageSwitcher';
 import { LoginButton } from '../Button/LoginButton';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
+import { ADMIN_ID } from '../../shared/constants';
 
 /**
  * "Хедер" приложения
@@ -16,7 +17,11 @@ export const Header: React.FC = () => {
 
   const token = useAppSelector((state) => state.auth.token);
   const isUserLoggedIn = token !== null;
-  const isAdminRole = token === 'admin';
+
+  const profileId = useAppSelector((state) => state.auth.profileId);
+
+  // Признак админской роли
+  const isAdminRole = profileId === ADMIN_ID;
 
   const cartItems = useAppSelector((state) => state.cart.items);
   const cartItemsCounter = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -33,7 +38,7 @@ export const Header: React.FC = () => {
             <li>
               <NavLink to="/sdsadas">404</NavLink>
             </li>
-            {isAdminRole && (
+            {isUserLoggedIn && isAdminRole && (
               <li>
                 <NavLink to="/admin">{t('header.admin-panel')}</NavLink>
               </li>

@@ -1,10 +1,14 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { REST_API_SERVER_URL, COMMAND_ID } from '../../constants';
+import { client } from '../../../client/ApolloClient';
+import { SIGN_UP } from '../../../graphql/mutations/profile';
 
 interface ISingUpResponse {
   errors?: Array<{ extensions: { code: string } }>;
   token?: string;
 }
 
+// REST
 export const singup = async (email: string, password: string): Promise<ISingUpResponse> => {
   try {
     const response = await fetch(REST_API_SERVER_URL + `/signup`, {
@@ -22,3 +26,15 @@ export const singup = async (email: string, password: string): Promise<ISingUpRe
     throw error;
   }
 };
+
+// GraphQL
+export const signUp = createAsyncThunk(
+  'user/signUp',
+  async (credentials: { email: string; password: string; commandId: string }) => {
+    const response = await client.mutate({
+      mutation: SIGN_UP,
+      variables: credentials,
+    });
+    return response.data;
+  }
+);

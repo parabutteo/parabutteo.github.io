@@ -6,6 +6,8 @@
   &.short-card {
     border: 1px solid rgba($dark, 0.2);
     max-width: 284px;
+    transition: .2s;
+    cursor: pointer;
 
     img {
       height: 450px;
@@ -14,6 +16,10 @@
 
     .counter input {
       width: 150px;
+    }
+
+    &:hover {
+      box-shadow: 3px 3px 10px rgba($color: #000000, $alpha: .1);
     }
   }
 
@@ -35,12 +41,12 @@
       position: absolute;
       right: 18px;
       top: 18px;
-      opacity: .6;
-  
+      opacity: 0.6;
+
       &:hover {
         opacity: 1;
       }
-  
+
       i {
         color: $dark;
         font-size: 16px;
@@ -52,20 +58,11 @@
     width: 1000px;
     display: flex;
 
-    .galery {
-      display: flex;
-      
-      .current-img img {
-        width: 400px;
-        height: 560px;
-        object-fit: cover;
-      }
-
-      .galery-img {
-        gap: 12px;
-        margin-left: 12px;
-        width: 100px;
-      }
+    .current-img img {
+      width: 500px;
+      height: 750px;
+      object-fit: cover;
+      border: 1px solid rgba($dark, 0.2);
     }
   }
 }
